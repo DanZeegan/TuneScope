@@ -1470,6 +1470,7 @@ Duration: {results['duration']:.2f} seconds
                 if len(recommendations['fit']) == 0:
                     st.info("No perfect matches in the current catalog. Try the stretch songs below!")
                 else:
+
                     for song in recommendations['fit']:
     with st.expander(f"🎵 {song['title']} - {song['artist']}"):
         col1, col2 = st.columns([2, 1])
@@ -1490,7 +1491,10 @@ Duration: {results['duration']:.2f} seconds
                 'intermediate': '🟡',
                 'advanced': '🔴'
             }
-            st.markdown(f"### {difficulty_color.get(song['difficulty'], '⚪')} {song['difficulty'].upper()}")
+            st.markdown(
+                f"### {difficulty_color.get(song['difficulty'], '⚪')} {song['difficulty'].upper()}"
+            )
+
 
                             
                             with col1:
