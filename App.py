@@ -1471,8 +1471,27 @@ Duration: {results['duration']:.2f} seconds
                     st.info("No perfect matches in the current catalog. Try the stretch songs below!")
                 else:
                     for song in recommendations['fit']:
-                                                    with st.expander(f"🎵 {song['title']} - {song['artist']}"):
-                            col1, col2 = st.columns([2, 1])
+    with st.expander(f"🎵 {song['title']} - {song['artist']}"):
+        col1, col2 = st.columns([2, 1])
+
+        with col1:
+            st.markdown(f"**Key:** {song['key']}")
+            st.markdown(f"**Range:** {song['range']}")
+            st.markdown(f"**Difficulty:** {song['difficulty'].title()}")
+            st.markdown(f"**Tags:** {song['tags']}")
+
+            st.markdown("**Why this song:**")
+            for reason in song['reasons']:
+                st.markdown(f"• {reason}")
+
+        with col2:
+            difficulty_color = {
+                'beginner': '🟢',
+                'intermediate': '🟡',
+                'advanced': '🔴'
+            }
+            st.markdown(f"### {difficulty_color.get(song['difficulty'], '⚪')} {song['difficulty'].upper()}")
+
                             
                             with col1:
                                 st.markdown(f"**Key:** {song['key']}")
