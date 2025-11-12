@@ -26,6 +26,7 @@ import time
 import base64
 from typing import Dict, List, Tuple, Optional, Any
 import warnings
+import torch
 warnings.filterwarnings('ignore')
 
 # Try to import torchcrepe for advanced pitch detection
