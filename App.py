@@ -250,7 +250,7 @@ def classify_voice_type(midi_notes: np.ndarray, tessitura_range: Tuple[float, fl
     }
 
 
-def analyze_audio(y: np.ndarray, sr: int, progress_callback=None) -> Dict:
+def analyze_audio(y: np.ndarray, sr: int, progress_callback=None, voicing_threshold: float = 0.5) -> Dict:
     """Comprehensive audio analysis pipeline."""
     results = {}
     
@@ -284,14 +284,15 @@ def analyze_audio(y: np.ndarray, sr: int, progress_callback=None) -> Dict:
         pitch, confidence = detect_pitch_yin(y, sr)
         results['pitch_method'] = 'YIN (fallback)'
     
-    pitch_smoothed = smooth_pitch(pitch, confidence, window_size=5, conf_threshold=VOICING_THRESHOLD)
-    voiced_mask = (pitch_smoothed > 0) & (confidence > VOICING_THRESHOLD)
+    # Use the provided voicing threshold
+    pitch_smoothed = smooth_pitch(pitch, confidence, window_size=5, conf_threshold=voicing_threshold)
+    voiced_mask = (pitch_smoothed > 0) & (confidence > voicing_threshold)
     voiced_pitch = pitch_smoothed[voiced_mask]
     
-    if len(voiced_pitch) == 0:
+    if len(voiced_pitch) < 10:  # Need at least 10 voiced frames
         return {
-            'error': 'No voice detected. Please ensure you are speaking/singing clearly.',
-            'voiced_ratio': 0
+            'error': f'Insufficient voice detected ({len(voiced_pitch)} frames). Please ensure you are speaking/singing clearly and loudly. Try adjusting the voicing threshold in settings.',
+            'voiced_ratio': np.sum(voiced_mask) / len(voiced_mask) if len(voiced_mask) > 0 else 0
         }
     
     results['voiced_ratio'] = np.sum(voiced_mask) / len(voiced_mask)
@@ -921,10 +922,11 @@ def main():
                         progress_bar.progress(value)
                     
                     try:
-                        results = analyze_audio(y, sr, progress_callback=update_progress)
+                        results = analyze_audio(y, sr, progress_callback=update_progress, voicing_threshold=voicing_threshold)
                         
                         if 'error' in results:
                             st.error(f"❌ {results['error']}")
+                            st.info(f"💡 Detected {results.get('voiced_ratio', 0)*100:.1f}% voiced frames. Try lowering the voicing threshold in the sidebar (currently {voicing_threshold}).")
                         else:
                             st.session_state.analysis_results = results
                             st.success("✅ Analysis complete! Check the other tabs for results.")
@@ -1058,7 +1060,10 @@ def main():
                     voice_scores = results['voice_type']['all_scores']
                     
                     for vtype, score in list(voice_scores.items())[:3]:
-                        st.progress(score, text=f"{vtype}: {score*100:.0f}%")
+                        # Ensure score is a float between 0.0 and 1.0
+                        score_value = float(score)
+                        score_value = max(0.0, min(1.0, score_value))
+                        st.progress(score_value, text=f"{vtype}: {score_value*100:.0f}%")
                 
                 with col_right:
                     st.markdown("### 💡 Recommendations")
