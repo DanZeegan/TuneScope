@@ -441,13 +441,7 @@ def analyze_audio(y: np.ndarray, sr: int) -> Dict[str, Any]:
     
     # Normalize audio
     # Sanitize and normalize audio safely
-    if not isinstance(y, np.ndarray):
-        y = np.array(y, dtype=np.float32)
-    else:
-        y = pd.to_numeric(y, errors='coerce')
-        y = np.nan_to_num(y, nan=0.0, posinf=0.0, neginf=0.0).astype(np.float32)
-y = y[np.isfinite(y)]
-y = librosa.util.normalize(y)
+    
 
     
     # Basic stats
