@@ -1,0 +1,11 @@
+title,artist,key,typical_low,typical_high,tags,pitch_template_json
+Happy Birthday,Traditional,C,261.63,523.25,celebration,easy,balanced,"[261.63, 293.66, 329.63, 261.63, 349.23, 329.63, 293.66, 261.63]"
+Amazing Grace,Traditional,C,261.63,523.25,gospel,medium,balanced,"[261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25]"
+Twinkle Twinkle Little Star,Mozart,C,261.63,523.25,children,easy,balanced,"[261.63, 261.63, 392.00, 392.00, 440.00, 440.00, 392.00]"
+My Heart Will Go On,Celine Dion,E,329.63,659.25,ballad,hard,high,"[329.63, 369.99, 392.00, 440.00, 493.88, 523.25, 587.33, 659.25]"
+Someone Like You,Adele,A,220.00,440.00,ballad,medium,low,"[220.00, 246.94, 261.63, 293.66, 329.63, 349.23, 369.99, 392.00]"
+Bohemian Rhapsody,Queen,B,246.94,739.99,rock,hard,wide_range,"[246.94, 277.18, 293.66, 329.63, 369.99, 392.00, 440.00, 493.88]"
+Let It Be,The Beatles,C,261.63,523.25,rock,medium,balanced,"[261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88]"
+Imagine,John Lennon,C,261.63,523.25,ballad,easy,balanced,"[261.63, 293.66, 329.63, 349.23, 392.00, 440.00]"
+Hallelujah,Leonard Cohen,C,261.63,523.25,ballad,medium,balanced,"[261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25]"
+Perfect,Ed Sheeran,G,196.00,392.00,ballad,easy,low,"[196.00, 220.00, 246.94, 261.63, 293.66, 329.63, 349.23]"
