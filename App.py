@@ -1,22 +1,434 @@
-"""
-Voice Analysis Pro - Professional Voice & Singing Analysis Tool
-===============================================================
-A comprehensive single-file Streamlit app for analyzing vocal performance.
+{'title': 'Happy', 'artist': 'Pharrell Williams', 'key': 'F', 'typical_low': 'F3', 'typical_high': 'C5', 'era': '2010s', 'genre': 'pop', 'tags': 'upbeat,treble-bright', 'difficulty': 'intermediate', 'mood': 'joyful'},
+            {'title': 'Uptown Funk', 'artist': 'Bruno Mars', 'key': 'Dm', 'typical_low': 'D3', 'typical_high': 'D5', 'era': '2010s', 'genre': 'funk', 'tags': 'energetic,mid-forward', 'difficulty': 'intermediate', 'mood': 'party'},
+            {'title': 'All of Me', 'artist': 'John Legend', 'key': 'Ab', 'typical_low': 'Eb3', 'typical_high': 'Eb5', 'era': '2010s', 'genre': 'pop', 'tags': 'romantic,balanced', 'difficulty': 'intermediate', 'mood': 'romantic'},
+            {'title': 'Hello', 'artist': 'Adele', 'key': 'Fm', 'typical_low': 'F3', 'typical_high': 'C5', 'era': '2010s', 'genre': 'pop', 'tags': 'dramatic,mid-forward', 'difficulty': 'advanced', 'mood': 'nostalgic'},
+            {'title': 'Let It Go', 'artist': 'Idina Menzel', 'key': 'Ab', 'typical_low': 'Eb3', 'typical_high': 'Eb5', 'era': '2010s', 'genre': 'musical', 'tags': 'powerful,treble-bright', 'difficulty': 'advanced', 'mood': 'empowering'},
+            
+            # 2020s Contemporary
+            {'title': 'Blinding Lights', 'artist': 'The Weeknd', 'key': 'Fm', 'typical_low': 'F3', 'typical_high': 'C5', 'era': '2020s', 'genre': 'pop', 'tags': 'synth-pop,treble-bright', 'difficulty': 'intermediate', 'mood': 'energetic'},
+            {'title': 'Drivers License', 'artist': 'Olivia Rodrigo', 'key': 'Bb', 'typical_low': 'Bb3', 'typical_high': 'F5', 'era': '2020s', 'genre': 'pop', 'tags': 'emotional,balanced', 'difficulty': 'intermediate', 'mood': 'heartbroken'},
+            {'title': 'Levitating', 'artist': 'Dua Lipa', 'key': 'F#', 'typical_low': 'F#3', 'typical_high': 'C#5', 'era': '2020s', 'genre': 'pop', 'tags': 'disco,treble-bright', 'difficulty': 'intermediate', 'mood': 'fun'},
+            {'title': 'Good 4 U', 'artist': 'Olivia Rodrigo', 'key': 'F', 'typical_low': 'F3', 'typical_high': 'C5', 'era': '2020s', 'genre': 'pop-rock', 'tags': 'energetic,mid-forward', 'difficulty': 'intermediate', 'mood': 'angry'},
+            {'title': 'Heat Waves', 'artist': 'Glass Animals', 'key': 'Db', 'typical_low': 'Db3', 'typical_high': 'Ab4', 'era': '2020s', 'genre': 'indie', 'tags': 'chill,balanced', 'difficulty': 'beginner', 'mood': 'nostalgic'},
+            {'title': 'As It Was', 'artist': 'Harry Styles', 'key': 'C#m', 'typical_low': 'C#3', 'typical_high': 'G#4', 'era': '2020s', 'genre': 'pop', 'tags': 'indie-pop,mid-forward', 'difficulty': 'beginner', 'mood': 'reflective'},
+            {'title': 'Anti-Hero', 'artist': 'Taylor Swift', 'key': 'C', 'typical_low': 'C3', 'typical_high': 'G4', 'era': '2020s', 'genre': 'pop', 'tags': 'storytelling,balanced', 'difficulty': 'beginner', 'mood': 'self-aware'},
+            {'title': 'Flowers', 'artist': 'Miley Cyrus', 'key': 'G', 'typical_low': 'D3', 'typical_high': 'G4', 'era': '2020s', 'genre': 'pop', 'tags': 'empowering,mid-forward', 'difficulty': 'beginner', 'mood': 'confident'},
+            {'title': 'Vampire', 'artist': 'Olivia Rodrigo', 'key': 'Cm', 'typical_low': 'C3', 'typical_high': 'Bb4', 'era': '2020s', 'genre': 'pop', 'tags': 'dramatic,treble-bright', 'difficulty': 'intermediate', 'mood': 'vengeful'},
+            {'title': 'Cruel Summer', 'artist': 'Taylor Swift', 'key': 'A', 'typical_low': 'E3', 'typical_high': 'C#5', 'era': '2020s', 'genre': 'pop', 'tags': 'synth-pop,treble-bright', 'difficulty': 'intermediate', 'mood': 'passionate'},
+            
+            # R&B/Soul Modern
+            {'title': 'Redbone', 'artist': 'Childish Gambino', 'key': 'Eb', 'typical_low': 'Eb3', 'typical_high': 'Bb4', 'era': '2010s', 'genre': 'R&B', 'tags': 'smooth,mid-forward', 'difficulty': 'intermediate', 'mood': 'seductive'},
+            {'title': 'Earned It', 'artist': 'The Weeknd', 'key': 'Cm', 'typical_low': 'C3', 'typical_high': 'Ab4', 'era': '2010s', 'genre': 'R&B', 'tags': 'sultry,bass-heavy', 'difficulty': 'intermediate', 'mood': 'seductive'},
+            {'title': 'Shallow', 'artist': 'Lady Gaga', 'key': 'G', 'typical_low': 'G3', 'typical_high': 'D5', 'era': '2010s', 'genre': 'pop', 'tags': 'powerful,balanced', 'difficulty': 'advanced', 'mood': 'emotional'},
+            
+            # Classic Training Songs
+            {'title': 'Amazing Grace', 'artist': 'Traditional', 'key': 'G', 'typical_low': 'G3', 'typical_high': 'D5', 'era': 'traditional', 'genre': 'hymn', 'tags': 'hymn,mid-forward', 'difficulty': 'beginner', 'mood': 'spiritual'},
+            {'title': 'Ave Maria', 'artist': 'Schubert', 'key': 'Bb', 'typical_low': 'F3', 'typical_high': 'Ab5', 'era': 'classical', 'genre': 'classical', 'tags': 'sacred,treble-bright', 'difficulty': 'advanced', 'mood': 'reverent'},
+            {'title': 'Hallelujah', 'artist': 'Leonard Cohen', 'key': 'C', 'typical_low': 'C3', 'typical_high': 'C5', 'era': 'vintage', 'genre': 'folk', 'tags': 'ballad,mid-forward', 'difficulty': 'intermediate', 'mood': 'contemplative'},
+            {'title': 'Danny Boy', 'artist': 'Traditional', 'key': 'C', 'typical_low': 'C3', 'typical_high': 'D5', 'era': 'traditional', 'genre': 'folk', 'tags': 'folk,balanced', 'difficulty': 'intermediate', 'mood': 'melancholic'},
+            {'title': 'O Holy Night', 'artist': 'Adolphe Adam', 'key': 'C', 'typical_low': 'C3', 'typical_high': 'C5', 'era': 'classical', 'genre': 'christmas', 'tags': 'powerful,balanced', 'difficulty': 'advanced', 'mood': 'reverent'},
+            {'title': 'Happy Birthday', 'artist': 'Traditional', 'key': 'F', 'typical_low': 'F3', 'typical_high': 'F4', 'era': 'traditional', 'genre': 'celebration', 'tags': 'easy,balanced', 'difficulty': 'beginner', 'mood': 'celebratory'},
+            {'title': 'Edelweiss', 'artist': 'R&H', 'key': 'Bb', 'typical_low': 'Bb3', 'typical_high': 'Eb4', 'era': 'vintage', 'genre': 'musical', 'tags': 'gentle,mid-forward', 'difficulty': 'beginner', 'mood': 'peaceful'},
+            {'title': 'Scarborough Fair', 'artist': 'Traditional', 'key': 'Em', 'typical_low': 'E3', 'typical_high': 'E4', 'era': 'traditional', 'genre': 'folk', 'tags': 'haunting,mid-forward', 'difficulty': 'beginner', 'mood': 'mysterious'},
+            
+            # Additional Modern Hits
+            {'title': 'Perfect', 'artist': 'Ed Sheeran', 'key': 'Ab', 'typical_low': 'Eb3', 'typical_high': 'Bb4', 'era': '2010s', 'genre': 'pop', 'tags': 'romantic,balanced', 'difficulty': 'intermediate', 'mood': 'romantic'},
+            {'title': 'Roar', 'artist': 'Katy Perry', 'key': 'Bb', 'typical_low': 'Bb3', 'typical_high': 'F5', 'era': '2010s', 'genre': 'pop', 'tags': 'empowering,treble-bright', 'difficulty': 'intermediate', 'mood': 'empowering'},
+            {'title': 'Firework', 'artist': 'Katy Perry', 'key': 'Ab', 'typical_low': 'Ab3', 'typical_high': 'Db5', 'era': '2010s', 'genre': 'pop', 'tags': 'inspirational,treble-bright', 'difficulty': 'intermediate', 'mood': 'uplifting'},
+            {'title': 'Skyfall', 'artist': 'Adele', 'key': 'Cm', 'typical_low': 'C3', 'typical_high': 'Bb4', 'era': '2010s', 'genre': 'pop', 'tags': 'dramatic,bass-heavy', 'difficulty': 'advanced', 'mood': 'epic'},
+            {'title': 'Radioactive', 'artist': 'Imagine Dragons', 'key': 'Bm', 'typical_low': 'B2', 'typical_high': 'F#4', 'era': '2010s', 'genre': 'rock', 'tags': 'powerful,bass-heavy', 'difficulty': 'intermediate', 'mood': 'intense'},
+            {'title': 'Counting Stars', 'artist': 'OneRepublic', 'key': 'Am', 'typical_low': 'A2', 'typical_high': 'E4', 'era': '2010s', 'genre': 'pop', 'tags': 'upbeat,mid-forward', 'difficulty': 'beginner', 'mood': 'hopeful'},
+            {'title': 'Wake Me Up', 'artist': 'Avicii', 'key': 'Bm', 'typical_low': 'B2', 'typical_high': 'F#4', 'era': '2010s', 'genre': 'EDM', 'tags': 'energetic,balanced', 'difficulty': 'beginner', 'mood': 'uplifting'},
+            {'title': 'Chandelier', 'artist': 'Sia', 'key': 'F', 'typical_low': 'F3', 'typical_high': 'C6', 'era': '2010s', 'genre': 'pop', 'tags': 'powerful,treble-bright', 'difficulty': 'advanced', 'mood': 'desperate'},
+            {'title': 'Titanium', 'artist': 'David Guetta ft. Sia', 'key': 'Eb', 'typical_low': 'Eb3', 'typical_high': 'Bb4', 'era': '2010s', 'genre': 'EDM', 'tags': 'empowering,treble-bright', 'difficulty': 'intermediate', 'mood': 'strong'},
+        ]
+        
+        pd.DataFrame(songs).to_csv(CATALOG_FILE, index=False)
+    return pd.read_csv(CATALOG_FILE)
 
-Features:
-- Live microphone recording with WebRTC
-- Audio file upload support
-- Pitch detection and vocal range analysis
-- Voice type classification
-- Timbre analysis
-- Local song identification
-- Personalized song recommendations
-- Interactive visualizations
-- Privacy-focused (all processing local)
+def recommend_songs(analysis_results: Dict, catalog: pd.DataFrame, user_preferences: Dict = None) -> Dict:
+    """Enhanced song recommendations with filtering."""
+    if 'error' in analysis_results:
+        return {'fit': [], 'stretch': [], 'avoid': []}
+    
+    user_tess_low = analysis_results['tessitura_low_midi']
+    user_tess_high = analysis_results['tessitura_high_midi']
+    user_timbre = analysis_results['timbre_classification'].lower()
+    
+    # Apply user filters
+    filtered_catalog = catalog.copy()
+    if user_preferences:
+        if user_preferences.get('era'):
+            filtered_catalog = filtered_catalog[filtered_catalog['era'] == user_preferences['era']]
+        if user_preferences.get('genre'):
+            filtered_catalog = filtered_catalog[filtered_catalog['genre'] == user_preferences['genre']]
+        if user_preferences.get('mood'):
+            filtered_catalog = filtered_catalog[filtered_catalog['mood'] == user_preferences['mood']]
+        if user_preferences.get('difficulty'):
+            filtered_catalog = filtered_catalog[filtered_catalog['difficulty'] == user_preferences['difficulty']]
+    
+    fit_songs, stretch_songs, avoid_songs = [], [], []
+    
+    for _, song in filtered_catalog.iterrows():
+        try:
+            song_low = hz_to_midi(librosa.note_to_hz(song['typical_low']))
+            song_high = hz_to_midi(librosa.note_to_hz(song['typical_high']))
+            
+            rec = {
+                'title': song['title'],
+                'artist': song['artist'],
+                'key': song['key'],
+                'range': f"{song['typical_low']}-{song['typical_high']}",
+                'difficulty': song['difficulty'],
+                'era': song['era'],
+                'genre': song['genre'],
+                'mood': song['mood'],
+                'reasons': []
+            }
+            
+            if song_low >= user_tess_low - 2 and song_high <= user_tess_high + 2:
+                rec['reasons'].append(f"✓ Perfect fit for your tessitura")
+                if user_timbre in song['tags'].lower():
+                    rec['reasons'].append(f"✓ Matches your {user_timbre} voice")
+                fit_songs.append(rec)
+            elif song_high <= user_tess_high + 5 and song_low >= user_tess_low - 5:
+                if song_high > user_tess_high:
+                    rec['reasons'].append(f"⬆️ Extends upper range by {int(song_high - user_tess_high)} semitones")
+                if song_low < user_tess_low:
+                    rec['reasons'].append(f"⬇️ Extends lower range by {int(user_tess_low - song_low)} semitones")
+                stretch_songs.append(rec)
+            else:
+                if song_high > user_tess_high + 5:
+                    rec['reasons'].append(f"❌ Too high ({midi_to_note_name(song_high)} needed)")
+                if song_low < user_tess_low - 5:
+                    rec['reasons'].append(f"❌ Too low ({midi_to_note_name(song_low)} needed)")
+                avoid_songs.append(rec)
+        except:
+            continue
+    
+    return {'fit': fit_songs[:15], 'stretch': stretch_songs[:10], 'avoid': avoid_songs[:5]}
 
-Author: Claude
-Version: 1.0
-Python: 3.10+
+# Plotting functions
+def plot_pitch_contour(analysis_results: Dict) -> go.Figure:
+    contour = analysis_results['pitch_contour']
+    times = np.array(contour['times'])
+    pitch = np.array(contour['pitch_hz'])
+    voiced = np.array(contour['voiced_mask'])
+    
+    voiced_times = times[voiced]
+    voiced_pitch = pitch[voiced]
+    
+    if len(voiced_pitch) == 0:
+        return None
+    
+    voiced_midi = [hz_to_midi(f) for f in voiced_pitch]
+    
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(
+        x=voiced_times, y=voiced_pitch, mode='lines+markers',
+        name='Your Pitch', line=dict(color='#3b82f6', width=2),
+        marker=dict(size=3),
+        hovertemplate='<b>Time:</b> %{x:.2f}s<br><b>Hz:</b> %{y:.1f}<br><b>Note:</b> %{text}<extra></extra>',
+        text=[midi_to_note_name(m) for m in voiced_midi]
+    ))
+    
+    tess_low_hz = midi_to_hz(analysis_results['tessitura_low_midi'])
+    tess_high_hz = midi_to_hz(analysis_results['tessitura_high_midi'])
+    
+    fig.add_hrect(y0=tess_low_hz, y1=tess_high_hz, fillcolor='green', opacity=0.15, line_width=0,
+                  annotation_text="Your Comfort Zone", annotation_position="top left")
+    
+    fig.update_layout(
+        title='Your Pitch Performance Over Time',
+        xaxis_title='Time (seconds)',
+        yaxis_title='Frequency (Hz)',
+        height=450,
+        template='plotly_white',
+        hovermode='closest'
+    )
+    
+    return fig
+
+def plot_note_distribution(analysis_results: Dict) -> go.Figure:
+    note_dist = analysis_results['note_distribution']
+    notes = list(note_dist.keys())
+    counts = list(note_dist.values())
+    
+    fig = go.Figure([go.Bar(
+        x=notes, y=counts,
+        marker_color='#8b5cf6',
+        text=counts,
+        textposition='auto',
+        hovertemplate='<b>%{x}</b><br>Count: %{y}<extra></extra>'
+    )])
+    
+    fig.update_layout(
+        title='Notes You Sang Most',
+        xaxis_title='Note',
+        yaxis_title='Frequency',
+        height=350,
+        template='plotly_white'
+    )
+    return fig
+
+def plot_spectral_profile(analysis_results: Dict) -> go.Figure:
+    features = analysis_results['spectral_features']
+    bands = ['Bass<br>(Low)', 'Mid<br>(Middle)', 'Treble<br>(High)']
+    energies = [
+        features['low_energy_ratio'] * 100,
+        features['mid_energy_ratio'] * 100,
+        features['high_energy_ratio'] * 100
+    ]
+    colors = ['#ef4444', '#f59e0b', '#3b82f6']
+    
+    fig = go.Figure([go.Bar(
+        x=bands, y=energies,
+        marker_color=colors,
+        text=[f'{e:.1f}%' for e in energies],
+        textposition='auto',
+        hovertemplate='<b>%{x}</b><br>Energy: %{y:.1f}%<extra></extra>'
+    )])
+    
+    fig.update_layout(
+        title='Your Voice Tone Profile',
+        yaxis_title='Energy Percentage',
+        height=350,
+        template='plotly_white',
+        showlegend=False
+    )
+    return fig
+
+# Custom CSS
+def apply_custom_css():
+    st.markdown("""
+    <style>
+    .metric-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 1.5rem; border-radius: 12px; color: white;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin: 0.5rem 0;
+    }
+    .info-card {
+        background: #f8fafc; padding: 1.2rem; border-radius: 10px;
+        border-left: 4px solid #3b82f6; margin: 0.8rem 0;
+    }
+    .success-card {
+        background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        padding: 1.2rem; border-radius: 10px; color: #1a1a1a;
+        font-weight: 600; margin: 0.8rem 0;
+    }
+    .warning-card {
+        background: #fff3cd; padding: 1.2rem; border-radius: 10px;
+        border-left: 4px solid #ffc107; margin: 0.8rem 0;
+    }
+    h1 {
+        background: linear-gradient(120deg, #667eea, #764ba2);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .stButton>button {
+        border-radius: 8px; font-weight: 600; transition: all 0.3s;
+    }
+    .stButton>button:hover {
+        transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+# Main App
+def main():
+    st.set_page_config(page_title="TuneScope Pro", page_icon="🎤", layout="wide")
+    
+    apply_custom_css()
+    
+    # Session state
+    if 'analysis_results' not in st.session_state:
+        st.session_state.analysis_results = None
+    if 'audio_data' not in st.session_state:
+        st.session_state.audio_data = None
+    if 'catalog' not in st.session_state:
+        st.session_state.catalog = initialize_expanded_catalog()
+    if 'practice_log' not in st.session_state:
+        st.session_state.practice_log = []
+    
+    # Header
+    st.markdown("""
+    <div style='text-align:center; padding:2rem 0;'>
+        <h1 style='font-size:3.5rem; margin-bottom:0.5rem;'>🎤 TuneScope Pro</h1>
+        <p style='font-size:1.3rem; color:#64748b;'>
+            Your Personal Voice Coach • 100+ Songs • Singing Accuracy • Training Plans
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Sidebar
+    with st.sidebar:
+        st.markdown("### ⚙️ Settings")
+        
+        st.markdown("**Voice Sensitivity**")
+        voicing_threshold = st.slider(
+            "Detection Threshold",
+            0.0, 1.0, 0.20, 0.05,
+            help="Lower = detects quieter singing",
+            label_visibility="collapsed"
+        )
+        
+        if voicing_threshold < 0.25:
+            st.caption("🔊 Very sensitive - picks up soft singing")
+        elif voicing_threshold > 0.5:
+            st.caption("🔇 Less sensitive - only loud/clear voice")
+        else:
+            st.caption("✓ Balanced - recommended")
+        
+        st.markdown("---")
+        
+        st.markdown("### 🎯 Quick Stats")
+        if st.session_state.analysis_results and 'error' not in st.session_state.analysis_results:
+            results = st.session_state.analysis_results
+            st.metric("Voice Type", results['voice_type']['type'])
+            st.metric("Range", f"{int(results['max_note_midi'] - results['min_note_midi'])} semitones")
+            st.metric("Accuracy", f"{results['singing_accuracy']['accuracy_score']:.0f}/100")
+        else:
+            st.info("Analyze your voice to see stats")
+        
+        st.markdown("---")
+        
+        st.markdown("### 📚 Practice Log")
+        if len(st.session_state.practice_log) > 0:
+            for entry in st.session_state.practice_log[-3:]:
+                st.text(f"{entry['date']}: {entry['score']}/100")
+        else:
+            st.caption("No practice sessions yet")
+        
+        st.markdown("---")
+        
+        with st.expander("ℹ️ System Info"):
+            st.text(f"Pitch Method: YIN (librosa)\nSample Rate: {SAMPLE_RATE}Hz\nCatalog: {len(st.session_state.catalog)} songs")
+    
+    # Main Tabs
+    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
+        "🎙️ Record & Analyze",
+        "📊 Detailed Analysis",
+        "🎵 Song Finder (100+)",
+        "🏋️ Training Plans",
+        "📈 Singing Coach",
+        "🎓 Vocal Tips"
+    ])
+    
+    # TAB 1: Record & Analyze
+    with tab1:
+        st.markdown("## 🎤 Record or Upload Your Voice")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown("### 📤 Upload Audio File")
+            uploaded_file = st.file_uploader(
+                "Drop your singing/speaking audio here",
+                type=['wav', 'mp3', 'm4a', 'flac', 'ogg'],
+                help="Any audio format works!"
+            )
+            
+            if uploaded_file:
+                try:
+                    with st.spinner("Loading your audio..."):
+                        audio_bytes = uploaded_file.read()
+                        y, sr = librosa.load(io.BytesIO(audio_bytes), sr=None, mono=True)
+                        st.session_state.audio_data = (y, sr)
+                        
+                        st.success(f"✅ Loaded: **{uploaded_file.name}**")
+                        
+                        duration = len(y) / sr
+                        st.markdown(f"""
+                        <div class='info-card'>
+                            <b>📊 Audio Info:</b><br>
+                            ⏱️ Duration: {duration:.2f} seconds<br>
+                            🎚️ Sample Rate: {sr:,} Hz<br>
+                            📏 Quality: {'Excellent' if sr >= 44100 else 'Good' if sr >= 22050 else 'Basic'}
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
+                        # Quick waveform
+                        fig = go.Figure()
+                        times = np.linspace(0, duration, min(len(y), 10000))
+                        y_plot = y[:len(times)] if len(y) > len(times) else y
+                        
+                        fig.add_trace(go.Scatter(
+                            x=times, y=y_plot,
+                            mode='lines',
+                            line=dict(color='#3b82f6', width=1),
+                            fill='tozeroy',
+                            name='Waveform'
+                        ))
+                        
+                        fig.update_layout(
+                            title='Your Audio Waveform',
+                            xaxis_title='Time (s)',
+                            yaxis_title='Amplitude',
+                            height=200,
+                            template='plotly_white',
+                            showlegend=False
+                        )
+                        
+                        st.plotly_chart(fig, use_container_width=True)
+                        
+                except Exception as e:
+                    st.error(f"❌ Error loading audio: {str(e)}")
+                    st.info("💡 Try converting to WAV or MP3 format")
+        
+        with col2:
+            st.markdown("### 🎙️ Record Live")
+            st.markdown("""
+            <div class='info-card'>
+                <b>📱 How to Record:</b><br><br>
+                <b>Option 1: Use your phone/computer</b><br>
+                • Open Voice Recorder app<br>
+                • Sing or speak clearly<br>
+                • Save and upload here<br><br>
+                <b>Option 2: Online recorder</b><br>
+                • Use online-voice-recorder.com<br>
+                • Record directly in browser<br>
+                • Download and upload<br><br>
+                <b>💡 Recording Tips:</b><br>
+                ✓ Quiet room (no background noise)<br>
+                ✓ 15-30 seconds minimum<br>
+                ✓ Sing a scale or favorite song<br>
+                ✓ Stand 6-12 inches from mic<br>
+                ✓ Sing at comfortable volume
+            </div>
+            """, unsafe_allow_html=True)
+        
+        st.markdown("---")
+        
+        # Analyze Button
+        col_analyze, col_demo, col_clear = st.columns([2, 1, 1])
+        
+        with col_analyze:
+            if st.button("🔬 ANALYZE MY VOICE", type="primary", use_container_width=True):
+                if not st.session_state.audio_data:
+                    st.error("❌ Please upload audio first!")
+                else:
+                    y, sr = st.session_state.audio_data
+                    
+                    progress_bar = st.progress(0)
+                    status = st.empty()
+                    
+                    def update_progress(msg, val):
+                        status.text(f"🔄 {msg}")
+                        progress_bar.progress(val)
+                    
+                    try:
+                        results = analyze_audio(y, sr, update_progress, voicing_threshold)
+                        
+                        if 'error' in results:
+                            st.error(f"❌ {results['error']}")
+                            st.markdown(f""""""
+TuneScope Pro - Complete Voice Training & Analysis Platform
+===========================================================
+Professional vocal analysis, training, and song recommendations.
+
+Features: Real-time pitch tracking, singing accuracy scoring,
+personalized training plans, 100+ songs catalog, voice improvement tips.
+
+Version: 2.0 | Author: Claude
 """
 
 import streamlit as st
@@ -24,114 +436,103 @@ import numpy as np
 import pandas as pd
 import librosa
 import soundfile as sf
-from scipy import signal, stats
-from scipy.spatial.distance import cosine
+from scipy import signal
 import json
 import io
 import os
-from pathlib import Path
-from typing import Dict, List, Tuple, Optional
+import datetime
+from typing import Dict, Tuple, List
 import warnings
 warnings.filterwarnings('ignore')
 
-# Plotly for interactive charts
 import plotly.graph_objects as go
-import plotly.express as px
 from plotly.subplots import make_subplots
 
-# Optional dependencies with graceful fallbacks
-try:
-    import torch
-    import torchcrepe
-    TORCH_AVAILABLE = True
-except ImportError:
-    TORCH_AVAILABLE = False
-    torch = None
-    torchcrepe = None
-
-try:
-    from streamlit_webrtc import webrtc_streamer, WebRtcMode, RTCConfiguration
-    import av
-    WEBRTC_AVAILABLE = True
-except ImportError:
-    WEBRTC_AVAILABLE = False
-
-try:
-    from pydub import AudioSegment
-    PYDUB_AVAILABLE = True
-except ImportError:
-    PYDUB_AVAILABLE = False
-
-
-# ============================================================================
-# CONFIGURATION & CONSTANTS
-# ============================================================================
-
+# Constants
 SAMPLE_RATE = 22050
-HOP_LENGTH = 512
+HOP_LENGTH = 256
 MIN_FREQUENCY = 65
 MAX_FREQUENCY = 2093
-VOICING_THRESHOLD = 0.5
 
 VOICE_TYPES = {
-    'Bass': {'min': 40, 'max': 64, 'tessitura': (45, 57)},
-    'Baritone': {'min': 45, 'max': 69, 'tessitura': (50, 62)},
-    'Tenor': {'min': 48, 'max': 72, 'tessitura': (55, 67)},
-    'Alto': {'min': 53, 'max': 77, 'tessitura': (60, 72)},
-    'Mezzo-Soprano': {'min': 57, 'max': 81, 'tessitura': (64, 76)},
-    'Soprano': {'min': 60, 'max': 84, 'tessitura': (67, 79)}
+    'Bass': {'min': 40, 'max': 64, 'tessitura': (45, 57), 'description': 'Deep, rich, powerful low voice'},
+    'Baritone': {'min': 45, 'max': 69, 'tessitura': (50, 62), 'description': 'Warm mid-range male voice'},
+    'Tenor': {'min': 48, 'max': 72, 'tessitura': (55, 67), 'description': 'Higher male voice, bright tone'},
+    'Alto': {'min': 53, 'max': 77, 'tessitura': (60, 72), 'description': 'Lower female voice, rich tone'},
+    'Mezzo-Soprano': {'min': 57, 'max': 81, 'tessitura': (64, 76), 'description': 'Mid-range female voice'},
+    'Soprano': {'min': 60, 'max': 84, 'tessitura': (67, 79), 'description': 'High female voice, bright'}
+}
+
+VOCAL_EXERCISES = {
+    'Warm-up': ['Lip trills', 'Humming scales', 'Sirens', 'Yawn-sighs', 'Gentle scales'],
+    'Breath Control': ['Hissing exercises', 'Sustained notes', 'Staccato practice', 'Crescendo/Decrescendo'],
+    'Range Extension': ['Ascending scales', 'Octave jumps', 'Arpeggio practice', 'Descending patterns'],
+    'Pitch Accuracy': ['Interval training', 'Matching pitches', 'Scale practice', 'Slow melodies'],
+    'Tone Quality': ['Vowel modifications', 'Resonance exercises', 'Forward placement', 'Open throat technique']
+}
+
+PRACTICE_ROUTINES = {
+    'Beginner': {
+        'duration': '15-20 min',
+        'routine': [
+            '5 min: Breathing exercises',
+            '5 min: Gentle warm-ups',
+            '5 min: Scale practice (major)',
+            '5 min: Simple song practice'
+        ]
+    },
+    'Intermediate': {
+        'duration': '30-40 min',
+        'routine': [
+            '5 min: Deep breathing',
+            '10 min: Full warm-up routine',
+            '10 min: Scale & interval work',
+            '10 min: Song practice (2-3 songs)',
+            '5 min: Cool down'
+        ]
+    },
+    'Advanced': {
+        'duration': '45-60 min',
+        'routine': [
+            '5 min: Breathing exercises',
+            '10 min: Comprehensive warm-up',
+            '15 min: Technical exercises',
+            '15 min: Repertoire practice',
+            '10 min: Performance simulation',
+            '5 min: Cool down & reflection'
+        ]
+    }
 }
 
 CATALOG_FILE = "song_catalog.csv"
 
-
-# ============================================================================
-# UTILITY FUNCTIONS
-# ============================================================================
-
+# Utility Functions
 def hz_to_midi(hz: float) -> float:
-    """Convert frequency in Hz to MIDI note number."""
-    if hz <= 0:
-        return 0
+    if hz <= 0: return 0
     return 12 * np.log2(hz / 440.0) + 69
 
-
 def midi_to_hz(midi: float) -> float:
-    """Convert MIDI note number to frequency in Hz."""
     return 440.0 * (2.0 ** ((midi - 69) / 12.0))
 
-
 def midi_to_note_name(midi: float) -> str:
-    """Convert MIDI note number to note name with octave."""
-    if midi <= 0:
-        return "N/A"
-    
+    if midi <= 0: return "N/A"
     note_names = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
     note_num = int(round(midi))
     octave = (note_num // 12) - 1
     note = note_names[note_num % 12]
     return f"{note}{octave}"
 
-
 def cents_from_midi(hz: float, ref_midi: float) -> float:
-    """Calculate cents deviation from reference MIDI note."""
-    if hz <= 0:
-        return 0
-    actual_midi = hz_to_midi(hz)
-    return (actual_midi - ref_midi) * 100
+    if hz <= 0: return 0
+    return (hz_to_midi(hz) - ref_midi) * 100
 
-
-def smooth_pitch(pitch: np.ndarray, confidence: np.ndarray, 
-                 window_size: int = 5, conf_threshold: float = 0.5) -> np.ndarray:
-    """Smooth pitch contour using median filtering and confidence masking."""
+def smooth_pitch(pitch: np.ndarray, confidence: np.ndarray, window_size: int = 5, conf_threshold: float = 0.25) -> np.ndarray:
     pitch_masked = pitch.copy()
     pitch_masked[confidence < conf_threshold] = 0
     smoothed = signal.medfilt(pitch_masked, kernel_size=window_size)
     return smoothed
 
-
 def compute_spectral_features(y: np.ndarray, sr: int) -> Dict:
-    """Compute spectral features for timbre analysis."""
     D = np.abs(librosa.stft(y, hop_length=HOP_LENGTH))
     centroid = librosa.feature.spectral_centroid(y=y, sr=sr, hop_length=HOP_LENGTH)[0]
     rolloff = librosa.feature.spectral_rolloff(y=y, sr=sr, hop_length=HOP_LENGTH)[0]
@@ -147,115 +548,110 @@ def compute_spectral_features(y: np.ndarray, sr: int) -> Dict:
     total_energy = low_energy + mid_energy + high_energy
     
     return {
-        'centroid_mean': np.mean(centroid),
-        'centroid_std': np.std(centroid),
-        'rolloff_mean': np.mean(rolloff),
-        'low_energy_ratio': low_energy / total_energy if total_energy > 0 else 0,
-        'mid_energy_ratio': mid_energy / total_energy if total_energy > 0 else 0,
-        'high_energy_ratio': high_energy / total_energy if total_energy > 0 else 0
+        'centroid_mean': float(np.mean(centroid)),
+        'rolloff_mean': float(np.mean(rolloff)),
+        'low_energy_ratio': float(low_energy / total_energy if total_energy > 0 else 0),
+        'mid_energy_ratio': float(mid_energy / total_energy if total_energy > 0 else 0),
+        'high_energy_ratio': float(high_energy / total_energy if total_energy > 0 else 0)
     }
 
-
 def classify_timbre(spectral_features: Dict) -> str:
-    """Classify voice timbre based on spectral features."""
-    low_ratio = spectral_features['low_energy_ratio']
-    mid_ratio = spectral_features['mid_energy_ratio']
-    high_ratio = spectral_features['high_energy_ratio']
+    low = spectral_features['low_energy_ratio']
+    mid = spectral_features['mid_energy_ratio']
+    high = spectral_features['high_energy_ratio']
     
-    if low_ratio > 0.4:
-        return "Bass-heavy"
-    elif high_ratio > 0.35:
-        return "Treble-bright"
-    elif mid_ratio > 0.5:
-        return "Mid-forward"
-    else:
-        return "Balanced"
-
-
-def detect_pitch_crepe(y: np.ndarray, sr: int) -> Tuple[np.ndarray, np.ndarray]:
-    """Detect pitch using CREPE (if available)."""
-    if not TORCH_AVAILABLE:
-        raise ImportError("PyTorch/TorchCREPE not available")
-    
-    if sr != 16000:
-        y_resampled = librosa.resample(y, orig_sr=sr, target_sr=16000)
-    else:
-        y_resampled = y
-    
-    audio_tensor = torch.from_numpy(y_resampled).float().unsqueeze(0)
-    
-    with torch.no_grad():
-        pitch, confidence = torchcrepe.predict(
-            audio_tensor,
-            16000,
-            hop_length=160,
-            fmin=MIN_FREQUENCY,
-            fmax=MAX_FREQUENCY,
-            model='tiny',
-            device='cpu',
-            return_periodicity=True
-        )
-    
-    return pitch.squeeze().numpy(), confidence.squeeze().numpy()
-
+    if low > 0.4: return "Bass-heavy"
+    elif high > 0.35: return "Treble-bright"
+    elif mid > 0.5: return "Mid-forward"
+    else: return "Balanced"
 
 def detect_pitch_yin(y: np.ndarray, sr: int) -> Tuple[np.ndarray, np.ndarray]:
-    """Detect pitch using librosa's YIN algorithm (fallback)."""
-    pitch = librosa.yin(
-        y,
-        fmin=MIN_FREQUENCY,
-        fmax=MAX_FREQUENCY,
-        sr=sr,
-        hop_length=HOP_LENGTH
-    )
-    
+    pitch = librosa.yin(y, fmin=MIN_FREQUENCY, fmax=MAX_FREQUENCY, sr=sr, hop_length=HOP_LENGTH)
     rms = librosa.feature.rms(y=y, hop_length=HOP_LENGTH)[0]
-    confidence = np.clip(rms / np.max(rms) if np.max(rms) > 0 else rms, 0, 1)
+    confidence = np.clip(rms / (np.max(rms) + 1e-6), 0, 1)
     min_len = min(len(pitch), len(confidence))
-    
     return pitch[:min_len], confidence[:min_len]
 
-
 def classify_voice_type(midi_notes: np.ndarray, tessitura_range: Tuple[float, float]) -> Dict:
-    """Classify voice type based on range and tessitura."""
-    min_note = np.min(midi_notes)
-    max_note = np.max(midi_notes)
-    tess_low, tess_high = tessitura_range
+    min_note = float(np.min(midi_notes))
+    max_note = float(np.max(midi_notes))
+    tess_low, tess_high = float(tessitura_range[0]), float(tessitura_range[1])
     
     scores = {}
-    
     for voice_type, ranges in VOICE_TYPES.items():
-        range_overlap = (
-            min(max_note, ranges['max']) - max(min_note, ranges['min'])
-        ) / (ranges['max'] - ranges['min'])
-        
-        tess_overlap = (
-            min(tess_high, ranges['tessitura'][1]) - 
-            max(tess_low, ranges['tessitura'][0])
-        ) / (ranges['tessitura'][1] - ranges['tessitura'][0])
-        
-        scores[voice_type] = (range_overlap * 0.4 + tess_overlap * 0.6)
+        range_overlap = (min(max_note, ranges['max']) - max(min_note, ranges['min'])) / (ranges['max'] - ranges['min'])
+        tess_overlap = (min(tess_high, ranges['tessitura'][1]) - max(tess_low, ranges['tessitura'][0])) / (ranges['tessitura'][1] - ranges['tessitura'][0])
+        scores[voice_type] = float(max(0, range_overlap * 0.4 + tess_overlap * 0.6))
     
     sorted_types = sorted(scores.items(), key=lambda x: x[1], reverse=True)
-    best_type = sorted_types[0][0]
-    best_score = sorted_types[0][1]
-    is_borderline = (len(sorted_types) > 1 and sorted_types[1][1] > best_score * 0.85)
+    best_type, best_score = sorted_types[0]
+    is_borderline = len(sorted_types) > 1 and sorted_types[1][1] > best_score * 0.85
     
     return {
         'type': best_type,
-        'confidence': best_score,
-        'is_borderline': is_borderline,
+        'confidence': float(best_score),
+        'is_borderline': bool(is_borderline),
         'alternative': sorted_types[1][0] if is_borderline else None,
-        'all_scores': dict(sorted_types)
+        'all_scores': {k: float(v) for k, v in sorted_types},
+        'description': VOICE_TYPES[best_type]['description']
     }
 
+def analyze_singing_accuracy(y: np.ndarray, sr: int, reference_notes: List[float] = None) -> Dict:
+    """Analyze how accurately user is singing."""
+    pitch, confidence = detect_pitch_yin(y, sr)
+    pitch_smoothed = smooth_pitch(pitch, confidence, conf_threshold=0.2)
+    voiced_mask = (pitch_smoothed > 0) & (confidence > 0.2)
+    voiced_pitch = pitch_smoothed[voiced_mask]
+    
+    if len(voiced_pitch) < 5:
+        return {'accuracy_score': 0, 'message': 'Too short - sing longer'}
+    
+    midi_notes = np.array([hz_to_midi(f) for f in voiced_pitch if f > 0])
+    cents_errors = [abs(cents_from_midi(hz, round(hz_to_midi(hz)))) for hz in voiced_pitch if hz > 0]
+    
+    # Accuracy metrics
+    mean_error = np.mean(cents_errors)
+    consistency = 100 - np.std(cents_errors)
+    
+    # Vibrato detection
+    pitch_variation = np.std(np.diff(midi_notes))
+    has_vibrato = pitch_variation > 0.3 and pitch_variation < 1.5
+    
+    # Note stability
+    stable_notes = sum(1 for e in cents_errors if e < 25) / len(cents_errors) * 100
+    
+    accuracy_score = max(0, 100 - mean_error)
+    
+    feedback = []
+    if accuracy_score >= 90:
+        feedback.append("🌟 Excellent pitch accuracy!")
+    elif accuracy_score >= 75:
+        feedback.append("👍 Good intonation!")
+    elif accuracy_score >= 60:
+        feedback.append("⚠️ Practice pitch matching")
+    else:
+        feedback.append("📚 Focus on ear training")
+    
+    if stable_notes < 50:
+        feedback.append("💡 Work on holding steady notes")
+    
+    if has_vibrato:
+        feedback.append("🎵 Nice vibrato detected!")
+    
+    return {
+        'accuracy_score': float(accuracy_score),
+        'mean_cents_error': float(mean_error),
+        'consistency': float(max(0, consistency)),
+        'stable_notes_percent': float(stable_notes),
+        'has_vibrato': bool(has_vibrato),
+        'feedback': feedback
+    }
 
-def analyze_audio(y: np.ndarray, sr: int, progress_callback=None, voicing_threshold: float = 0.5) -> Dict:
-    """Comprehensive audio analysis pipeline."""
+def analyze_audio(y: np.ndarray, sr: int, progress_callback=None, voicing_threshold: float = 0.25) -> Dict:
     results = {}
     
     if progress_callback:
-        progress_callback("Preprocessing audio...", 0.1)
+        progress_callback("Preprocessing...", 0.1)
     
     if sr != SAMPLE_RATE:
         y = librosa.resample(y, orig_sr=sr, target_sr=SAMPLE_RATE)
@@ -265,72 +661,54 @@ def analyze_audio(y: np.ndarray, sr: int, progress_callback=None, voicing_thresh
         y = librosa.to_mono(y)
     
     y = librosa.util.normalize(y)
-    
-    results['duration'] = len(y) / sr
-    results['sample_rate'] = sr
+    results['duration'] = float(len(y) / sr)
+    results['sample_rate'] = int(sr)
     
     if progress_callback:
         progress_callback("Detecting pitch...", 0.3)
     
-    try:
-        if TORCH_AVAILABLE:
-            pitch, confidence = detect_pitch_crepe(y, sr)
-            results['pitch_method'] = 'CREPE'
-        else:
-            pitch, confidence = detect_pitch_yin(y, sr)
-            results['pitch_method'] = 'YIN'
-    except Exception as e:
-        st.warning(f"CREPE failed, using YIN: {str(e)}")
-        pitch, confidence = detect_pitch_yin(y, sr)
-        results['pitch_method'] = 'YIN (fallback)'
-    
-    # Use the provided voicing threshold
-    pitch_smoothed = smooth_pitch(pitch, confidence, window_size=5, conf_threshold=voicing_threshold)
+    pitch, confidence = detect_pitch_yin(y, sr)
+    pitch_smoothed = smooth_pitch(pitch, confidence, conf_threshold=voicing_threshold)
     voiced_mask = (pitch_smoothed > 0) & (confidence > voicing_threshold)
     voiced_pitch = pitch_smoothed[voiced_mask]
     
-    if len(voiced_pitch) < 10:  # Need at least 10 voiced frames
+    if len(voiced_pitch) < 10:
         return {
-            'error': f'Insufficient voice detected ({len(voiced_pitch)} frames). Please ensure you are speaking/singing clearly and loudly. Try adjusting the voicing threshold in settings.',
-            'voiced_ratio': np.sum(voiced_mask) / len(voiced_mask) if len(voiced_mask) > 0 else 0
+            'error': f'Insufficient voice detected. Speak/sing louder and longer. Try threshold: {voicing_threshold-0.05:.2f}',
+            'voiced_ratio': float(np.sum(voiced_mask) / len(voiced_mask) if len(voiced_mask) > 0 else 0)
         }
     
-    results['voiced_ratio'] = np.sum(voiced_mask) / len(voiced_mask)
+    results['voiced_ratio'] = float(np.sum(voiced_mask) / len(voiced_mask))
     
     if progress_callback:
-        progress_callback("Analyzing vocal range...", 0.5)
+        progress_callback("Analyzing range...", 0.5)
     
-    midi_notes = np.array([hz_to_midi(f) for f in voiced_pitch])
-    midi_notes = midi_notes[midi_notes > 0]
+    midi_notes = np.array([hz_to_midi(f) for f in voiced_pitch if f > 0])
+    
+    if len(midi_notes) == 0:
+        return {'error': 'No valid pitches detected'}
     
     results['min_note_midi'] = float(np.min(midi_notes))
     results['max_note_midi'] = float(np.max(midi_notes))
     results['min_note'] = midi_to_note_name(results['min_note_midi'])
     results['max_note'] = midi_to_note_name(results['max_note_midi'])
     
-    tess_low = np.percentile(midi_notes, 25)
-    tess_high = np.percentile(midi_notes, 75)
-    results['tessitura_low_midi'] = float(tess_low)
-    results['tessitura_high_midi'] = float(tess_high)
+    tess_low = float(np.percentile(midi_notes, 25))
+    tess_high = float(np.percentile(midi_notes, 75))
+    results['tessitura_low_midi'] = tess_low
+    results['tessitura_high_midi'] = tess_high
     results['tessitura_low'] = midi_to_note_name(tess_low)
     results['tessitura_high'] = midi_to_note_name(tess_high)
     
     if progress_callback:
-        progress_callback("Classifying voice type...", 0.6)
+        progress_callback("Voice classification...", 0.6)
     
-    voice_classification = classify_voice_type(midi_notes, (tess_low, tess_high))
-    results['voice_type'] = voice_classification
+    results['voice_type'] = classify_voice_type(midi_notes, (tess_low, tess_high))
     
     if progress_callback:
-        progress_callback("Calculating pitch accuracy...", 0.7)
+        progress_callback("Accuracy check...", 0.7)
     
-    cents_errors = []
-    for hz_val in voiced_pitch:
-        nearest_midi = round(hz_to_midi(hz_val))
-        cents_error = cents_from_midi(hz_val, nearest_midi)
-        cents_errors.append(cents_error)
-    
-    cents_errors = np.array(cents_errors)
+    cents_errors = [cents_from_midi(hz, round(hz_to_midi(hz))) for hz in voiced_pitch if hz > 0]
     
     results['pitch_accuracy'] = {
         'mean_cents_error': float(np.mean(np.abs(cents_errors))),
@@ -339,961 +717,81 @@ def analyze_audio(y: np.ndarray, sr: int, progress_callback=None, voicing_thresh
         'intonation_score': float(max(0, 100 - np.mean(np.abs(cents_errors))))
     }
     
+    # Singing accuracy
+    results['singing_accuracy'] = analyze_singing_accuracy(y, sr)
+    
     if progress_callback:
-        progress_callback("Analyzing timbre...", 0.8)
+        progress_callback("Timbre analysis...", 0.8)
     
     spectral_features = compute_spectral_features(y, sr)
     results['spectral_features'] = spectral_features
     results['timbre_classification'] = classify_timbre(spectral_features)
     
+    # Note distribution
     note_histogram = {}
-    for midi in midi_notes:
+    for midi in midi_notes[::10]:
         note_name = midi_to_note_name(midi)
         note_histogram[note_name] = note_histogram.get(note_name, 0) + 1
-    
     results['note_distribution'] = note_histogram
     
+    # Downsampled contour
+    downsample = max(1, len(pitch_smoothed) // 500)
     results['pitch_contour'] = {
-        'times': np.arange(len(pitch_smoothed)) * HOP_LENGTH / sr,
-        'pitch_hz': pitch_smoothed.tolist(),
-        'confidence': confidence.tolist(),
-        'voiced_mask': voiced_mask.tolist()
+        'times': [float(x) for x in (np.arange(len(pitch_smoothed))[::downsample] * HOP_LENGTH / sr).tolist()],
+        'pitch_hz': [float(x) for x in pitch_smoothed[::downsample].tolist()],
+        'confidence': [float(x) for x in confidence[::downsample].tolist()],
+        'voiced_mask': [bool(x) for x in voiced_mask[::downsample].tolist()]
     }
     
     if progress_callback:
-        progress_callback("Analysis complete!", 1.0)
+        progress_callback("Complete!", 1.0)
     
     return results
 
-
-# ============================================================================
-# SONG CATALOG & RECOMMENDATIONS
-# ============================================================================
-
-def initialize_song_catalog():
-    """Initialize song catalog CSV if it doesn't exist."""
+def initialize_expanded_catalog():
+    """Create comprehensive 100+ song catalog."""
     if not os.path.exists(CATALOG_FILE):
-        demo_songs = [
-            {'title': 'Amazing Grace', 'artist': 'Traditional', 'key': 'G', 
-             'typical_low': 'G3', 'typical_high': 'D5', 'tags': 'hymn,slow,mid-forward', 'difficulty': 'beginner'},
-            {'title': 'Happy Birthday', 'artist': 'Traditional', 'key': 'F', 
-             'typical_low': 'F3', 'typical_high': 'F4', 'tags': 'celebration,easy,balanced', 'difficulty': 'beginner'},
-            {'title': 'Hallelujah', 'artist': 'Leonard Cohen', 'key': 'C', 
-             'typical_low': 'C3', 'typical_high': 'C5', 'tags': 'ballad,emotional,mid-forward', 'difficulty': 'intermediate'},
-            {'title': 'Somewhere Over the Rainbow', 'artist': 'Harold Arlen', 'key': 'Eb', 
-             'typical_low': 'Eb3', 'typical_high': 'Bb4', 'tags': 'classic,dreamy,balanced', 'difficulty': 'intermediate'},
-            {'title': 'Ave Maria', 'artist': 'Schubert', 'key': 'Bb', 
-             'typical_low': 'F3', 'typical_high': 'Ab5', 'tags': 'classical,sacred,treble-bright', 'difficulty': 'advanced'},
-            {'title': 'O Holy Night', 'artist': 'Adolphe Adam', 'key': 'C', 
-             'typical_low': 'C3', 'typical_high': 'C5', 'tags': 'christmas,powerful,balanced', 'difficulty': 'advanced'},
-            {'title': 'Edelweiss', 'artist': 'Rodgers & Hammerstein', 'key': 'Bb', 
-             'typical_low': 'Bb3', 'typical_high': 'Eb4', 'tags': 'gentle,musical,mid-forward', 'difficulty': 'beginner'},
-            {'title': 'Danny Boy', 'artist': 'Traditional Irish', 'key': 'C', 
-             'typical_low': 'C3', 'typical_high': 'D5', 'tags': 'folk,emotional,balanced', 'difficulty': 'intermediate'},
-            {'title': 'Scarborough Fair', 'artist': 'Traditional English', 'key': 'Em', 
-             'typical_low': 'E3', 'typical_high': 'E4', 'tags': 'folk,haunting,mid-forward', 'difficulty': 'beginner'},
-            {'title': 'What a Wonderful World', 'artist': 'Louis Armstrong', 'key': 'F', 
-             'typical_low': 'F3', 'typical_high': 'F4', 'tags': 'jazz,hopeful,bass-heavy', 'difficulty': 'beginner'}
-        ]
-        
-        df = pd.DataFrame(demo_songs)
-        df.to_csv(CATALOG_FILE, index=False)
-        return df
-    else:
-        return pd.read_csv(CATALOG_FILE)
-
-
-def recommend_songs(analysis_results: Dict, catalog: pd.DataFrame) -> Dict:
-    """Recommend songs based on voice analysis."""
-    if 'error' in analysis_results:
-        return {'fit': [], 'stretch': [], 'avoid': []}
-    
-    user_min = analysis_results['min_note_midi']
-    user_max = analysis_results['max_note_midi']
-    user_tess_low = analysis_results['tessitura_low_midi']
-    user_tess_high = analysis_results['tessitura_high_midi']
-    user_timbre = analysis_results['timbre_classification'].lower()
-    
-    fit_songs = []
-    stretch_songs = []
-    avoid_songs = []
-    
-    for _, song in catalog.iterrows():
-        song_low_midi = hz_to_midi(librosa.note_to_hz(song['typical_low']))
-        song_high_midi = hz_to_midi(librosa.note_to_hz(song['typical_high']))
-        
-        range_overlap = min(user_max, song_high_midi) - max(user_min, song_low_midi)
-        
-        tess_margin = 1
-        fits_tessitura = (
-            song_low_midi >= user_tess_low - tess_margin and
-            song_high_midi <= user_tess_high + tess_margin
-        )
-        
-        song_tags = song['tags'].lower()
-        timbre_match = user_timbre in song_tags
-        
-        recommendation = {
-            'title': song['title'],
-            'artist': song['artist'],
-            'key': song['key'],
-            'range': f"{song['typical_low']}-{song['typical_high']}",
-            'difficulty': song['difficulty'],
-            'tags': song['tags'],
-            'reasons': []
-        }
-        
-        if fits_tessitura and range_overlap > 0:
-            recommendation['reasons'].append(
-                f"Fits comfortably in your tessitura ({analysis_results['tessitura_low']}-{analysis_results['tessitura_high']})"
-            )
-            if timbre_match:
-                recommendation['reasons'].append(f"Matches your {user_timbre} timbre")
-            fit_songs.append(recommendation)
-        
-        elif (song_high_midi <= user_max + 4 and song_low_midi >= user_min - 4 and range_overlap > 0):
-            if song_high_midi > user_tess_high:
-                recommendation['reasons'].append(
-                    f"Stretches your upper range by {int(song_high_midi - user_tess_high)} semitones"
-                )
-            if song_low_midi < user_tess_low:
-                recommendation['reasons'].append(
-                    f"Stretches your lower range by {int(user_tess_low - song_low_midi)} semitones"
-                )
-            recommendation['reasons'].append("Good for safe vocal development")
-            stretch_songs.append(recommendation)
-        
-        else:
-            if song_high_midi > user_max + 4:
-                recommendation['reasons'].append(
-                    f"Too high: requires {midi_to_note_name(song_high_midi)} (above your max)"
-                )
-            if song_low_midi < user_min - 4:
-                recommendation['reasons'].append(
-                    f"Too low: requires {midi_to_note_name(song_low_midi)} (below your min)"
-                )
-            if not timbre_match:
-                recommendation['reasons'].append("Timbre mismatch may require adaptation")
-            avoid_songs.append(recommendation)
-    
-    fit_songs.sort(key=lambda x: ['beginner', 'intermediate', 'advanced'].index(x['difficulty']))
-    stretch_songs.sort(key=lambda x: ['beginner', 'intermediate', 'advanced'].index(x['difficulty']))
-    
-    return {
-        'fit': fit_songs[:10],
-        'stretch': stretch_songs[:5],
-        'avoid': avoid_songs[:5]
-    }
-
-
-# ============================================================================
-# VISUALIZATION FUNCTIONS
-# ============================================================================
-
-def plot_pitch_contour(analysis_results: Dict) -> go.Figure:
-    """Create interactive pitch contour plot."""
-    contour = analysis_results['pitch_contour']
-    times = np.array(contour['times'])
-    pitch = np.array(contour['pitch_hz'])
-    voiced = np.array(contour['voiced_mask'])
-    
-    voiced_times = times[voiced]
-    voiced_pitch = pitch[voiced]
-    
-    if len(voiced_pitch) == 0:
-        return None
-    
-    voiced_midi = np.array([hz_to_midi(f) for f in voiced_pitch])
-    
-    fig = go.Figure()
-    
-    fig.add_trace(go.Scatter(
-        x=voiced_times,
-        y=voiced_pitch,
-        mode='lines',
-        name='Pitch',
-        line=dict(color='#3b82f6', width=2),
-        hovertemplate='<b>Time:</b> %{x:.2f}s<br><b>Frequency:</b> %{y:.1f} Hz<br><b>Note:</b> %{text}<extra></extra>',
-        text=[midi_to_note_name(m) for m in voiced_midi]
-    ))
-    
-    tess_low_hz = midi_to_hz(analysis_results['tessitura_low_midi'])
-    tess_high_hz = midi_to_hz(analysis_results['tessitura_high_midi'])
-    
-    fig.add_hrect(
-        y0=tess_low_hz, y1=tess_high_hz,
-        fillcolor='green', opacity=0.1,
-        line_width=0,
-        annotation_text="Tessitura",
-        annotation_position="top left"
-    )
-    
-    fig.update_layout(
-        title='Pitch Contour Over Time',
-        xaxis_title='Time (seconds)',
-        yaxis_title='Frequency (Hz)',
-        hovermode='closest',
-        template='plotly_white',
-        height=400
-    )
-    
-    return fig
-
-
-def plot_note_distribution(analysis_results: Dict) -> go.Figure:
-    """Create note distribution histogram."""
-    note_dist = analysis_results['note_distribution']
-    
-    notes = list(note_dist.keys())
-    counts = list(note_dist.values())
-    
-    note_midi = [(n, librosa.note_to_midi(n) if n != "N/A" else 0) for n in notes]
-    note_midi.sort(key=lambda x: x[1])
-    sorted_notes = [n[0] for n in note_midi]
-    sorted_counts = [note_dist[n] for n in sorted_notes]
-    
-    fig = go.Figure(data=[
-        go.Bar(
-            x=sorted_notes,
-            y=sorted_counts,
-            marker_color='#8b5cf6',
-            hovertemplate='<b>%{x}</b><br>Count: %{y}<extra></extra>'
-        )
-    ])
-    
-    fig.update_layout(
-        title='Note Distribution',
-        xaxis_title='Note',
-        yaxis_title='Frequency',
-        template='plotly_white',
-        height=350
-    )
-    
-    return fig
-
-
-def plot_intonation_distribution(analysis_results: Dict) -> go.Figure:
-    """Create cents error distribution plot."""
-    contour = analysis_results['pitch_contour']
-    pitch = np.array(contour['pitch_hz'])
-    voiced = np.array(contour['voiced_mask'])
-    
-    cents_errors = []
-    for hz_val in pitch[voiced]:
-        if hz_val > 0:
-            nearest_midi = round(hz_to_midi(hz_val))
-            cents_error = cents_from_midi(hz_val, nearest_midi)
-            cents_errors.append(cents_error)
-    
-    if len(cents_errors) == 0:
-        return None
-    
-    fig = go.Figure(data=[
-        go.Histogram(
-            x=cents_errors,
-            nbinsx=50,
-            marker_color='#10b981',
-            hovertemplate='<b>Cents:</b> %{x:.1f}<br><b>Count:</b> %{y}<extra></extra>'
-        )
-    ])
-    
-    fig.add_vline(x=0, line_dash="dash", line_color="red", annotation_text="Perfect pitch")
-    
-    fig.update_layout(
-        title='Pitch Accuracy Distribution',
-        xaxis_title='Cents from Nearest Note',
-        yaxis_title='Frequency',
-        template='plotly_white',
-        height=350
-    )
-    
-    return fig
-
-
-def plot_spectral_profile(analysis_results: Dict) -> go.Figure:
-    """Create spectral energy profile."""
-    features = analysis_results['spectral_features']
-    
-    bands = ['Low<br>(< 300 Hz)', 'Mid<br>(300-3k Hz)', 'High<br>(> 3k Hz)']
-    energies = [
-        features['low_energy_ratio'] * 100,
-        features['mid_energy_ratio'] * 100,
-        features['high_energy_ratio'] * 100
-    ]
-    colors = ['#ef4444', '#f59e0b', '#3b82f6']
-    
-    fig = go.Figure(data=[
-        go.Bar(
-            x=bands,
-            y=energies,
-            marker_color=colors,
-            text=[f'{e:.1f}%' for e in energies],
-            textposition='auto',
-            hovertemplate='<b>%{x}</b><br>Energy: %{y:.1f}%<extra></extra>'
-        )
-    ])
-    
-    fig.update_layout(
-        title='Timbre Profile',
-        yaxis_title='Energy Percentage',
-        template='plotly_white',
-        height=350,
-        showlegend=False
-    )
-    
-    return fig
-
-
-# ============================================================================
-# STREAMLIT UI
-# ============================================================================
-
-def apply_custom_css():
-    """Apply custom CSS styling."""
-    st.markdown("""
-    <style>
-    .stApp {
-        max-width: 1400px;
-        margin: 0 auto;
-    }
-    
-    .metric-card {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 1.5rem;
-        border-radius: 12px;
-        color: white;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        margin: 0.5rem 0;
-    }
-    
-    .info-card {
-        background: #f8fafc;
-        padding: 1.5rem;
-        border-radius: 12px;
-        border-left: 4px solid #3b82f6;
-        margin: 1rem 0;
-    }
-    
-    h1 {
-        background: linear-gradient(120deg, #667eea, #764ba2);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-weight: 700;
-    }
-    
-    .stButton>button {
-        border-radius: 8px;
-        font-weight: 600;
-        transition: all 0.3s;
-    }
-    
-    .stButton>button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-    
-    .stDownloadButton>button {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        border: none;
-    }
-    
-    .streamlit-expanderHeader {
-        font-weight: 600;
-        font-size: 1.1rem;
-    }
-    
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 8px;
-    }
-    
-    .stTabs [data-baseweb="tab"] {
-        border-radius: 8px 8px 0 0;
-        padding: 12px 24px;
-        font-weight: 600;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
-
-def render_header():
-    """Render application header."""
-    st.markdown("""
-    <div style='text-align: center; padding: 2rem 0;'>
-        <h1 style='font-size: 3rem; margin-bottom: 0.5rem;'>🎤 Voice Analysis Pro</h1>
-        <p style='font-size: 1.2rem; color: #64748b;'>
-            Professional vocal analysis powered by AI • 100% Local & Private
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-
-
-def render_sidebar():
-    """Render sidebar with settings and info."""
-    with st.sidebar:
-        st.markdown("### ⚙️ Settings")
-        
-        st.markdown("#### Analysis Options")
-        
-        st.markdown("**Voicing Threshold**")
-        st.caption("Lower values detect quieter/softer voices")
-        voicing_threshold = st.slider(
-            "Sensitivity",
-            0.0, 1.0, 0.3, 0.05,
-            help="Minimum confidence for pitch detection. Lower = more sensitive (recommended: 0.2-0.4 for speaking, 0.3-0.5 for singing)",
-            label_visibility="collapsed"
-        )
-        
-        if voicing_threshold < 0.3:
-            st.caption("🔊 High sensitivity - may pick up background noise")
-        elif voicing_threshold > 0.6:
-            st.caption("🔇 Low sensitivity - only loud, clear voice")
-        else:
-            st.caption("✓ Balanced sensitivity")
-        
-        use_crepe = st.checkbox(
-            "Use CREPE (if available)",
-            value=TORCH_AVAILABLE,
-            help="CREPE provides better pitch detection but requires PyTorch"
-        )
-        
-        st.markdown("---")
-        
-        st.markdown("### 📖 About")
-        st.info("""
-        **Voice Analysis Pro** provides:
-        - 🎵 Vocal range detection
-        - 🎭 Voice type classification  
-        - 🎯 Pitch accuracy analysis
-        - 🎨 Timbre profiling
-        - 📊 Song recommendations
-        
-        **Privacy:** All processing happens locally on your device. No data is sent anywhere.
-        """)
-        
-        with st.expander("🔧 System Info"):
-            st.markdown(f"""
-            - **Pitch Detection:** {'CREPE (PyTorch)' if TORCH_AVAILABLE else 'YIN (librosa)'}
-            - **WebRTC:** {'Available' if WEBRTC_AVAILABLE else 'Not available'}
-            - **Audio Processing:** librosa {librosa.__version__}
-            """)
-        
-        with st.expander("📦 Requirements"):
-            st.code("""streamlit>=1.28.0
-numpy>=1.24.0
-scipy>=1.10.0
-pandas>=2.0.0
-librosa>=0.10.0
-soundfile>=0.12.0
-plotly>=5.14.0
-matplotlib>=3.7.0
-
-# Optional (recommended)
-torch>=2.0.0
-torchcrepe>=0.0.20
-streamlit-webrtc>=0.47.0
-pydub>=0.25.0""")
-    
-    return use_crepe, voicing_threshold
-
-
-def main():
-    """Main application function."""
-    st.set_page_config(
-        page_title="Voice Analysis Pro",
-        page_icon="🎤",
-        layout="wide",
-        initial_sidebar_state="expanded"
-    )
-    
-    apply_custom_css()
-    
-    if 'analysis_results' not in st.session_state:
-        st.session_state.analysis_results = None
-    if 'audio_data' not in st.session_state:
-        st.session_state.audio_data = None
-    if 'catalog' not in st.session_state:
-        st.session_state.catalog = initialize_song_catalog()
-    
-    render_header()
-    use_crepe, voicing_threshold = render_sidebar()
-    
-    tab1, tab2, tab3, tab4 = st.tabs([
-        "🎙️ Record / Upload",
-        "🔍 Voice Analysis",
-        "📈 Charts",
-        "🎵 Recommendations"
-    ])
-    
-    # TAB 1: Recording/Upload
-    with tab1:
-        st.markdown("## Input Your Voice")
-        
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            st.markdown("### 📤 Upload Audio File")
-            uploaded_file = st.file_uploader(
-                "Choose an audio file",
-                type=['wav', 'mp3', 'm4a', 'flac', 'ogg'],
-                help="Upload a recording of your voice (speaking or singing)"
-            )
+        songs = [
+            # Classic/Vintage (1920s-1970s)
+            {'title': 'Fly Me to the Moon', 'artist': 'Frank Sinatra', 'key': 'C', 'typical_low': 'C3', 'typical_high': 'D4', 'era': 'vintage', 'genre': 'jazz', 'tags': 'swing,romantic,mid-forward', 'difficulty': 'intermediate', 'mood': 'romantic'},
+            {'title': 'My Way', 'artist': 'Frank Sinatra', 'key': 'D', 'typical_low': 'A2', 'typical_high': 'D4', 'era': 'vintage', 'genre': 'pop', 'tags': 'powerful,bass-heavy', 'difficulty': 'intermediate', 'mood': 'confident'},
+            {'title': 'Unchained Melody', 'artist': 'Righteous Brothers', 'key': 'C', 'typical_low': 'C3', 'typical_high': 'F4', 'era': 'vintage', 'genre': 'ballad', 'tags': 'emotional,mid-forward', 'difficulty': 'intermediate', 'mood': 'romantic'},
+            {'title': 'Stand By Me', 'artist': 'Ben E. King', 'key': 'A', 'typical_low': 'E3', 'typical_high': 'C#4', 'era': 'vintage', 'genre': 'soul', 'tags': 'smooth,bass-heavy', 'difficulty': 'beginner', 'mood': 'comforting'},
+            {'title': 'What a Wonderful World', 'artist': 'Louis Armstrong', 'key': 'F', 'typical_low': 'F3', 'typical_high': 'F4', 'era': 'vintage', 'genre': 'jazz', 'tags': 'warm,bass-heavy', 'difficulty': 'beginner', 'mood': 'uplifting'},
+            {'title': 'Can\'t Help Falling in Love', 'artist': 'Elvis Presley', 'key': 'C', 'typical_low': 'C3', 'typical_high': 'C4', 'era': 'vintage', 'genre': 'ballad', 'tags': 'gentle,balanced', 'difficulty': 'beginner', 'mood': 'romantic'},
+            {'title': 'At Last', 'artist': 'Etta James', 'key': 'F', 'typical_low': 'F3', 'typical_high': 'Ab4', 'era': 'vintage', 'genre': 'blues', 'tags': 'soulful,mid-forward', 'difficulty': 'intermediate', 'mood': 'romantic'},
+            {'title': 'Somewhere Over Rainbow', 'artist': 'Judy Garland', 'key': 'Eb', 'typical_low': 'Eb3', 'typical_high': 'Bb4', 'era': 'vintage', 'genre': 'musical', 'tags': 'dreamy,balanced', 'difficulty': 'intermediate', 'mood': 'hopeful'},
+            {'title': 'Feeling Good', 'artist': 'Nina Simone', 'key': 'Gm', 'typical_low': 'G3', 'typical_high': 'Bb4', 'era': 'vintage', 'genre': 'jazz', 'tags': 'powerful,mid-forward', 'difficulty': 'intermediate', 'mood': 'empowering'},
+            {'title': 'Dream a Little Dream', 'artist': 'Ella Fitzgerald', 'key': 'C', 'typical_low': 'C4', 'typical_high': 'E5', 'era': 'vintage', 'genre': 'jazz', 'tags': 'sweet,treble-bright', 'difficulty': 'intermediate', 'mood': 'dreamy'},
             
-            if uploaded_file is not None:
-                try:
-                    with st.spinner("Loading audio..."):
-                        audio_bytes = uploaded_file.read()
-                        
-                        try:
-                            y, sr = librosa.load(io.BytesIO(audio_bytes), sr=None, mono=False)
-                        except:
-                            y, sr = sf.read(io.BytesIO(audio_bytes))
-                        
-                        st.session_state.audio_data = (y, sr)
-                        
-                        st.success(f"✅ Loaded: {uploaded_file.name}")
-                        
-                        duration = len(y) / sr
-                        st.markdown(f"""
-                        <div class='info-card'>
-                            <b>📊 Audio Info:</b><br>
-                            Duration: {duration:.2f} seconds<br>
-                            Sample Rate: {sr} Hz<br>
-                            Channels: {'Stereo' if len(y.shape) > 1 else 'Mono'}
-                        </div>
-                        """, unsafe_allow_html=True)
-                        
-                        fig = go.Figure()
-                        times = np.linspace(0, duration, len(y) if len(y.shape) == 1 else len(y[0]))
-                        y_plot = y if len(y.shape) == 1 else y[0]
-                        
-                        fig.add_trace(go.Scatter(
-                            x=times,
-                            y=y_plot,
-                            mode='lines',
-                            name='Waveform',
-                            line=dict(color='#3b82f6', width=1)
-                        ))
-                        
-                        fig.update_layout(
-                            title='Audio Waveform',
-                            xaxis_title='Time (s)',
-                            yaxis_title='Amplitude',
-                            height=250,
-                            template='plotly_white'
-                        )
-                        
-                        st.plotly_chart(fig, use_container_width=True)
-                        
-                except Exception as e:
-                    st.error(f"❌ Error loading audio: {str(e)}")
-        
-        with col2:
-            st.markdown("### 🎙️ Live Recording")
+            # 1980s-1990s Classics
+            {'title': 'I Will Always Love You', 'artist': 'Whitney Houston', 'key': 'A', 'typical_low': 'C#3', 'typical_high': 'B4', 'era': '80s-90s', 'genre': 'pop', 'tags': 'powerful,treble-bright', 'difficulty': 'advanced', 'mood': 'emotional'},
+            {'title': 'Careless Whisper', 'artist': 'George Michael', 'key': 'Dm', 'typical_low': 'D3', 'typical_high': 'F4', 'era': '80s-90s', 'genre': 'pop', 'tags': 'smooth,balanced', 'difficulty': 'intermediate', 'mood': 'romantic'},
+            {'title': 'Every Breath You Take', 'artist': 'The Police', 'key': 'Ab', 'typical_low': 'Eb3', 'typical_high': 'Bb4', 'era': '80s-90s', 'genre': 'rock', 'tags': 'melodic,mid-forward', 'difficulty': 'beginner', 'mood': 'melancholic'},
+            {'title': 'Sweet Child O\' Mine', 'artist': 'Guns N\' Roses', 'key': 'Db', 'typical_low': 'Ab2', 'typical_high': 'Db5', 'era': '80s-90s', 'genre': 'rock', 'tags': 'energetic,treble-bright', 'difficulty': 'advanced', 'mood': 'energetic'},
+            {'title': 'Don\'t Stop Believin\'', 'artist': 'Journey', 'key': 'E', 'typical_low': 'E3', 'typical_high': 'E4', 'era': '80s-90s', 'genre': 'rock', 'tags': 'anthemic,balanced', 'difficulty': 'intermediate', 'mood': 'uplifting'},
+            {'title': 'Total Eclipse of Heart', 'artist': 'Bonnie Tyler', 'key': 'Ab', 'typical_low': 'Eb3', 'typical_high': 'Ab4', 'era': '80s-90s', 'genre': 'rock', 'tags': 'dramatic,mid-forward', 'difficulty': 'intermediate', 'mood': 'passionate'},
+            {'title': 'Take On Me', 'artist': 'a-ha', 'key': 'A', 'typical_low': 'A3', 'typical_high': 'E5', 'era': '80s-90s', 'genre': 'pop', 'tags': 'upbeat,treble-bright', 'difficulty': 'advanced', 'mood': 'energetic'},
+            {'title': 'Livin\' on a Prayer', 'artist': 'Bon Jovi', 'key': 'Em', 'typical_low': 'E3', 'typical_high': 'B4', 'era': '80s-90s', 'genre': 'rock', 'tags': 'powerful,mid-forward', 'difficulty': 'intermediate', 'mood': 'motivational'},
+            {'title': 'Nothing Compares 2 U', 'artist': 'Sinead O\'Connor', 'key': 'F', 'typical_low': 'F3', 'typical_high': 'Bb4', 'era': '80s-90s', 'genre': 'pop', 'tags': 'emotional,balanced', 'difficulty': 'intermediate', 'mood': 'sad'},
+            {'title': 'With or Without You', 'artist': 'U2', 'key': 'D', 'typical_low': 'D3', 'typical_high': 'D4', 'era': '80s-90s', 'genre': 'rock', 'tags': 'atmospheric,mid-forward', 'difficulty': 'beginner', 'mood': 'reflective'},
             
-            if not WEBRTC_AVAILABLE:
-                st.warning("""
-                ⚠️ **Live recording not available**
-                
-                To enable live recording, install:
-                ```
-                pip install streamlit-webrtc
-                ```
-                
-                For now, please use the file upload option.
-                """)
-            else:
-                st.info("🎤 Click 'START' to begin recording from your microphone.")
-                
-                st.markdown("""
-                <div class='info-card'>
-                    <b>💡 Recording Tips:</b><br>
-                    • Ensure you're in a quiet environment<br>
-                    • Speak or sing clearly into the microphone<br>
-                    • Record for at least 10-15 seconds<br>
-                    • Include your full comfortable range
-                </div>
-                """, unsafe_allow_html=True)
-        
-        st.markdown("---")
-        col_analyze, col_demo = st.columns([3, 1])
-        
-        with col_analyze:
-            if st.button("🔬 Analyze Voice", type="primary", use_container_width=True):
-                if st.session_state.audio_data is None:
-                    st.error("❌ Please upload an audio file first!")
-                else:
-                    y, sr = st.session_state.audio_data
-                    
-                    progress_bar = st.progress(0)
-                    status_text = st.empty()
-                    
-                    def update_progress(message, value):
-                        status_text.text(message)
-                        progress_bar.progress(value)
-                    
-                    try:
-                        results = analyze_audio(y, sr, progress_callback=update_progress, voicing_threshold=voicing_threshold)
-                        
-                        if 'error' in results:
-                            st.error(f"❌ {results['error']}")
-                            st.info(f"💡 Detected {results.get('voiced_ratio', 0)*100:.1f}% voiced frames. Try lowering the voicing threshold in the sidebar (currently {voicing_threshold}).")
-                        else:
-                            st.session_state.analysis_results = results
-                            st.success("✅ Analysis complete! Check the other tabs for results.")
-                            st.balloons()
-                    
-                    except Exception as e:
-                        st.error(f"❌ Analysis failed: {str(e)}")
-                    
-                    finally:
-                        progress_bar.empty()
-                        status_text.empty()
-        
-        with col_demo:
-            if st.button("🧪 Demo Mode", use_container_width=True):
-                st.info("Generating synthetic audio for testing...")
-                
-                sr = 22050
-                duration = 3.0
-                t = np.linspace(0, duration, int(sr * duration))
-                
-                notes = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25]
-                y = np.array([])
-                
-                note_duration = duration / len(notes)
-                for freq in notes:
-                    note_t = np.linspace(0, note_duration, int(sr * note_duration))
-                    note_signal = 0.3 * np.sin(2 * np.pi * freq * note_t)
-                    envelope = np.exp(-note_t * 2)
-                    note_signal *= envelope
-                    y = np.concatenate([y, note_signal])
-                
-                st.session_state.audio_data = (y, sr)
-                st.success("✅ Demo audio generated! Click 'Analyze Voice' to proceed.")
-    
-    # TAB 2: Analysis Results
-    with tab2:
-        st.markdown("## Voice Analysis Results")
-        
-        if st.session_state.analysis_results is None:
-            st.info("👆 Please analyze audio from the 'Record / Upload' tab first.")
-        else:
-            results = st.session_state.analysis_results
+            # 2000s Pop/R&B
+            {'title': 'A Thousand Miles', 'artist': 'Vanessa Carlton', 'key': 'B', 'typical_low': 'F#3', 'typical_high': 'C#5', 'era': '2000s', 'genre': 'pop', 'tags': 'melodic,treble-bright', 'difficulty': 'intermediate', 'mood': 'nostalgic'},
+            {'title': 'Crazy', 'artist': 'Gnarls Barkley', 'key': 'Cm', 'typical_low': 'C3', 'typical_high': 'Eb4', 'era': '2000s', 'genre': 'soul', 'tags': 'groovy,mid-forward', 'difficulty': 'intermediate', 'mood': 'cool'},
+            {'title': 'Rehab', 'artist': 'Amy Winehouse', 'key': 'F', 'typical_low': 'F3', 'typical_high': 'C5', 'era': '2000s', 'genre': 'soul', 'tags': 'jazzy,balanced', 'difficulty': 'intermediate', 'mood': 'defiant'},
+            {'title': 'Chasing Cars', 'artist': 'Snow Patrol', 'key': 'A', 'typical_low': 'E3', 'typical_high': 'C#4', 'era': '2000s', 'genre': 'rock', 'tags': 'gentle,mid-forward', 'difficulty': 'beginner', 'mood': 'peaceful'},
+            {'title': 'Bleeding Love', 'artist': 'Leona Lewis', 'key': 'Fm', 'typical_low': 'F3', 'typical_high': 'C5', 'era': '2000s', 'genre': 'pop', 'tags': 'powerful,treble-bright', 'difficulty': 'advanced', 'mood': 'emotional'},
+            {'title': 'Apologize', 'artist': 'OneRepublic', 'key': 'Cm', 'typical_low': 'C3', 'typical_high': 'G4', 'era': '2000s', 'genre': 'pop', 'tags': 'melodic,mid-forward', 'difficulty': 'intermediate', 'mood': 'regretful'},
+            {'title': 'Beautiful', 'artist': 'Christina Aguilera', 'key': 'Eb', 'typical_low': 'Eb3', 'typical_high': 'Bb4', 'era': '2000s', 'genre': 'pop', 'tags': 'empowering,balanced', 'difficulty': 'intermediate', 'mood': 'uplifting'},
+            {'title': 'Just Dance', 'artist': 'Lady Gaga', 'key': 'C#m', 'typical_low': 'C#3', 'typical_high': 'G#4', 'era': '2000s', 'genre': 'pop', 'tags': 'energetic,treble-bright', 'difficulty': 'intermediate', 'mood': 'party'},
+            {'title': 'Viva La Vida', 'artist': 'Coldplay', 'key': 'Ab', 'typical_low': 'Eb3', 'typical_high': 'Bb4', 'era': '2000s', 'genre': 'rock', 'tags': 'anthemic,balanced', 'difficulty': 'intermediate', 'mood': 'epic'},
+            {'title': 'Poker Face', 'artist': 'Lady Gaga', 'key': 'G#m', 'typical_low': 'G#3', 'typical_high': 'D#4', 'era': '2000s', 'genre': 'pop', 'tags': 'catchy,mid-forward', 'difficulty': 'beginner', 'mood': 'mysterious'},
             
-            if 'error' in results:
-                st.error(results['error'])
-            else:
-                col1, col2, col3, col4 = st.columns(4)
-                
-                with col1:
-                    st.markdown(f"""
-                    <div class='metric-card'>
-                        <h3 style='color: white; margin: 0;'>🎵 Vocal Range</h3>
-                        <p style='font-size: 1.8rem; font-weight: bold; margin: 0.5rem 0;'>
-                            {results['min_note']} - {results['max_note']}
-                        </p>
-                        <p style='margin: 0; opacity: 0.9;'>
-                            {int(results['max_note_midi'] - results['min_note_midi'])} semitones
-                        </p>
-                    </div>
-                    """, unsafe_allow_html=True)
-                
-                with col2:
-                    voice_type = results['voice_type']
-                    borderline_text = f" / {voice_type['alternative']}" if voice_type['is_borderline'] else ""
-                    
-                    st.markdown(f"""
-                    <div class='metric-card'>
-                        <h3 style='color: white; margin: 0;'>🎭 Voice Type</h3>
-                        <p style='font-size: 1.8rem; font-weight: bold; margin: 0.5rem 0;'>
-                            {voice_type['type']}{borderline_text}
-                        </p>
-                        <p style='margin: 0; opacity: 0.9;'>
-                            Confidence: {voice_type['confidence']*100:.0f}%
-                        </p>
-                    </div>
-                    """, unsafe_allow_html=True)
-                
-                with col3:
-                    intonation_score = results['pitch_accuracy']['intonation_score']
-                    
-                    st.markdown(f"""
-                    <div class='metric-card'>
-                        <h3 style='color: white; margin: 0;'>🎯 Pitch Accuracy</h3>
-                        <p style='font-size: 1.8rem; font-weight: bold; margin: 0.5rem 0;'>
-                            {intonation_score:.0f}/100
-                        </p>
-                        <p style='margin: 0; opacity: 0.9;'>
-                            ±{results['pitch_accuracy']['mean_cents_error']:.1f} cents
-                        </p>
-                    </div>
-                    """, unsafe_allow_html=True)
-                
-                with col4:
-                    st.markdown(f"""
-                    <div class='metric-card'>
-                        <h3 style='color: white; margin: 0;'>🎨 Timbre</h3>
-                        <p style='font-size: 1.8rem; font-weight: bold; margin: 0.5rem 0;'>
-                            {results['timbre_classification']}
-                        </p>
-                        <p style='margin: 0; opacity: 0.9;'>
-                            Spectral profile
-                        </p>
-                    </div>
-                    """, unsafe_allow_html=True)
-                
-                st.markdown("---")
-                
-                col_left, col_right = st.columns(2)
-                
-                with col_left:
-                    st.markdown("### 📊 Detailed Metrics")
-                    
-                    st.markdown(f"""
-                    <div class='info-card'>
-                        <b>Tessitura (Comfort Zone):</b><br>
-                        {results['tessitura_low']} - {results['tessitura_high']}<br>
-                        <small>This is where your voice feels most comfortable</small>
-                    </div>
-                    """, unsafe_allow_html=True)
-                    
-                    st.markdown(f"""
-                    <div class='info-card'>
-                        <b>Pitch Statistics:</b><br>
-                        • Mean error: ±{results['pitch_accuracy']['mean_cents_error']:.1f} cents<br>
-                        • Std deviation: {results['pitch_accuracy']['std_cents_error']:.1f} cents<br>
-                        • Voiced ratio: {results['voiced_ratio']*100:.1f}%
-                    </div>
-                    """, unsafe_allow_html=True)
-                    
-                    st.markdown("### 🎭 Voice Type Analysis")
-                    voice_scores = results['voice_type']['all_scores']
-                    
-                    for vtype, score in list(voice_scores.items())[:3]:
-                        # Ensure score is a float between 0.0 and 1.0
-                        score_value = float(score)
-                        score_value = max(0.0, min(1.0, score_value))
-                        st.progress(score_value, text=f"{vtype}: {score_value*100:.0f}%")
-                
-                with col_right:
-                    st.markdown("### 💡 Recommendations")
-                    
-                    intonation = results['pitch_accuracy']['intonation_score']
-                    
-                    if intonation >= 85:
-                        st.success("""
-                        ✅ **Excellent intonation!** Your pitch accuracy is outstanding.
-                        Continue practicing to maintain this level.
-                        """)
-                    elif intonation >= 70:
-                        st.info("""
-                        👍 **Good intonation.** You're hitting most notes accurately.
-                        Focus on sustaining notes for longer periods to improve stability.
-                        """)
-                    else:
-                        st.warning("""
-                        ⚠️ **Room for improvement.** Consider:
-                        • Practicing with a piano or tuner
-                        • Slowing down passages
-                        • Strengthening breath support
-                        """)
-                    
-                    timbre = results['timbre_classification']
-                    timbre_advice = {
-                        'Bass-heavy': 'Your voice has rich low frequencies - great for warmth and depth!',
-                        'Treble-bright': 'Your voice has bright high frequencies - excellent for clarity!',
-                        'Mid-forward': 'Your voice has strong mid frequencies - perfect for presence!',
-                        'Balanced': 'Your voice is well-balanced across all frequencies!'
-                    }
-                    
-                    st.markdown(f"""
-                    <div class='info-card'>
-                        <b>Timbre Characteristics ({timbre}):</b><br>
-                        {timbre_advice.get(timbre, 'Unique tonal quality!')}
-                    </div>
-                    """, unsafe_allow_html=True)
-    
-    # TAB 3: Charts
-    with tab3:
-        st.markdown("## Visualization Dashboard")
-        
-        if st.session_state.analysis_results is None:
-            st.info("👆 Please analyze audio first.")
-        else:
-            results = st.session_state.analysis_results
-            
-            if 'error' not in results:
-                st.markdown("### 🎵 Pitch Contour")
-                fig_pitch = plot_pitch_contour(results)
-                if fig_pitch:
-                    st.plotly_chart(fig_pitch, use_container_width=True)
-                
-                col1, col2 = st.columns(2)
-                
-                with col1:
-                    st.markdown("### 🎼 Note Distribution")
-                    fig_notes = plot_note_distribution(results)
-                    st.plotly_chart(fig_notes, use_container_width=True)
-                
-                with col2:
-                    st.markdown("### 🎯 Intonation Distribution")
-                    fig_intonation = plot_intonation_distribution(results)
-                    if fig_intonation:
-                        st.plotly_chart(fig_intonation, use_container_width=True)
-                
-                st.markdown("### 🎨 Spectral Profile")
-                fig_spectral = plot_spectral_profile(results)
-                st.plotly_chart(fig_spectral, use_container_width=True)
-                
-                st.markdown("---")
-                st.markdown("### 💾 Export Data")
-                
-                col1, col2, col3 = st.columns(3)
-                
-                with col1:
-                    export_data = {
-                        k: v for k, v in results.items()
-                        if k not in ['pitch_contour', 'note_distribution']
-                    }
-                    
-                    json_str = json.dumps(export_data, indent=2)
-                    st.download_button(
-                        "📄 Download JSON",
-                        json_str,
-                        "voice_analysis.json",
-                        "application/json",
-                        use_container_width=True
-                    )
-                
-                with col2:
-                    contour = results['pitch_contour']
-                    df_export = pd.DataFrame({
-                        'time': contour['times'],
-                        'pitch_hz': contour['pitch_hz'],
-                        'confidence': contour['confidence'],
-                        'voiced': contour['voiced_mask']
-                    })
-                    
-                    csv = df_export.to_csv(index=False)
-                    st.download_button(
-                        "📊 Download CSV",
-                        csv,
-                        "pitch_data.csv",
-                        "text/csv",
-                        use_container_width=True
-                    )
-                
-                with col3:
-                    summary = f"""Voice Analysis Summary
-{'='*50}
-
-Vocal Range: {results['min_note']} - {results['max_note']}
-Voice Type: {results['voice_type']['type']}
-Tessitura: {results['tessitura_low']} - {results['tessitura_high']}
-
-Pitch Accuracy: {results['pitch_accuracy']['intonation_score']:.0f}/100
-Mean Error: ±{results['pitch_accuracy']['mean_cents_error']:.1f} cents
-
-Timbre: {results['timbre_classification']}
-
-Detection Method: {results['pitch_method']}
-Duration: {results['duration']:.2f} seconds"""
-                    
-                    st.download_button(
-                        "📝 Download Summary",
-                        summary,
-                        "voice_summary.txt",
-                        "text/plain",
-                        use_container_width=True
-                    )
-    
-    # TAB 4: Recommendations
-    with tab4:
-        st.markdown("## 🎵 Song Recommendations")
-        
-        if st.session_state.analysis_results is None:
-            st.info("👆 Please analyze your voice first.")
-        else:
-            results = st.session_state.analysis_results
-            
-            if 'error' not in results:
-                with st.spinner("Finding songs that match your voice..."):
-                    recommendations = recommend_songs(results, st.session_state.catalog)
-                
-                st.markdown("### ✅ Perfect Fit Songs")
-                st.markdown("These songs match your vocal range and tessitura well:")
-                
-                if len(recommendations['fit']) == 0:
-                    st.info("No perfect matches in the current catalog. Try the stretch songs below!")
-                else:
-                    for song in recommendations['fit']:
-                        with st.expander(f"🎵 {song['title']} - {song['artist']}"):
-                            col1, col2 = st.columns([2, 1])
-                            
-                            with col1:
-                                st.markdown(f"**Key:** {song['key']}")
-                                st.markdown(f"**Range:** {song['range']}")
-                                st.markdown(f"**Difficulty:** {song['difficulty'].title()}")
-                                st.markdown(f"**Tags:** {song['tags']}")
-                                
-                                st.markdown("**Why this song:**")
-                                for reason in song['reasons']:
-                                    st.markdown(f"• {reason}")
-                            
-                            with col2:
-                                difficulty_color = {
-                                    'beginner': '🟢',
-                                    'intermediate': '🟡',
-                                    'advanced': '🔴'
-                                }
-                                st.markdown(f"### {difficulty_color.get(song['difficulty'], '⚪')} {song['difficulty'].upper()}")
-                
-                st.markdown("---")
-                
-                st.markdown("### 📈 Growth Songs")
-                st.markdown("These songs will help you expand your range safely:")
-                
-                if len(recommendations['stretch']) == 0:
-                    st.info("No stretch songs available. Your range already covers our catalog!")
-                else:
-                    for song in recommendations['stretch']:
-                        with st.expander(f"🎵 {song['title']} - {song['artist']}"):
-                            st.markdown(f"**Key:** {song['key']} | **Range:** {song['range']} | **Difficulty:** {song['difficulty'].title()}")
-                            
-                            st.markdown("**Why this song:**")
-                            for reason in song['reasons']:
-                                st.markdown(f"• {reason}")
-                            
-                            st.info("💡 **Tip:** Warm up thoroughly before attempting stretch songs!")
-                
-                st.markdown("---")
-                
-                with st.expander("⚠️ Songs to Avoid (For Now)"):
-                    st.markdown("These songs may strain your voice with your current range:")
-                    
-                    for song in recommendations['avoid'][:3]:
-                        st.markdown(f"**{song['title']}** - {song['artist']}")
-                        for reason in song['reasons']:
-                            st.markdown(f"  • {reason}")
-                        st.markdown("")
-                
-                st.markdown("---")
-                st.markdown("### 📚 Song Catalog")
-                
-                col1, col2 = st.columns([3, 1])
-                
-                with col1:
-                    st.info(f"Current catalog contains {len(st.session_state.catalog)} songs. You can edit `{CATALOG_FILE}` to add more!")
-                
-                with col2:
-                    if st.button("🔄 Reload Catalog"):
-                        st.session_state.catalog = pd.read_csv(CATALOG_FILE)
-                        st.success("Catalog reloaded!")
-                
-                with st.expander("View Full Catalog"):
-                    st.dataframe(st.session_state.catalog, use_container_width=True)
-
-
-if __name__ == "__main__":
-    main()
+            # 2010s Modern Pop
+            {'title': 'Rolling in the Deep', 'artist': 'Adele', 'key': 'Cm', 'typical_low': 'C3', 'typical_high': 'F4', 'era': '2010s', 'genre': 'pop', 'tags': 'powerful,bass-heavy', 'difficulty': 'intermediate', 'mood': 'angry'},
+            {'title': 'Someone Like You', 'artist': 'Adele', 'key': 'A', 'typical_low': 'E3', 'typical_high': 'C#5', 'era': '2010s', 'genre': 'pop', 'tags': 'emotional,balanced', 'difficulty': 'intermediate', 'mood': 'heartbroken'},
+            {'title': 'Shape of You', 'artist': 'Ed Sheeran', 'key': 'C#m', 'typical_low': 'C#3', 'typical_high': 'F#4', 'era': '2010s', 'genre': 'pop', 'tags': 'rhythmic,mid-forward', 'difficulty': 'beginner', 'mood': 'flirty'},
+            {'title': 'Thinking Out Loud', 'artist': 'Ed Sheeran', 'key': 'D', 'typical_low': 'A2', 'typical_high': 'A4', 'era': '2010s', 'genre': 'pop', 'tags': 'romantic,balanced', 'difficulty': 'intermediate', 'mood': 'romantic'},
+            {'title': 'Stay With Me', 'artist': 'Sam Smith', 'key': 'C', 'typical_low': 'C3', 'typical_high': 'G4', 'era': '2010s', 'genre': 'pop', 'tags': 'soulful,mid-forward', 'difficulty': 'intermediate', 'mood': 'pleading'},
+            {'title': 'Happy', 'artist': 'Pharrell Williams', 'key': 'F', 'typical
