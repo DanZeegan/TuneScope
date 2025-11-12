@@ -715,7 +715,7 @@ def main():
                 st.markdown('<div class="metric-card">', unsafe_allow_html=True)
                 st.metric("Tessitura", f"{results['vocal_analysis']['tessitura_low']:.0f} - {results['vocal_analysis']['tessitura_high']:.0f} Hz")
                 st.metric("Timbre", results['timbre_analysis']['timbre_class'])
-                st.metric("Voiced Frames", f"{results['vocal_analysis']['voiced_percentage']:.1f}%")
+                st.metric("Voiced Frames", f"{results['accuracy_analysis']['voiced_percentage']:.1f}%")
                 st.markdown('</div>', unsafe_allow_html=True)
             
             with col3:
@@ -834,7 +834,7 @@ def main():
             
             # Generate recommendations
             with st.spinner("Generating personalized song recommendations..."):
-                recommendations = generate_scommendations(
+                recommendations = generate_song_recommendations(
                     results['vocal_analysis'], 
                     results['timbre_analysis'], 
                     catalog,
@@ -846,11 +846,12 @@ def main():
             perfect_fit = recommendations[recommendations['recommendation_type'] == 'Perfect Fit']
             if not perfect_fit.empty:
                 for _, song in perfect_fit.head(3).iterrows():
-                    with st.expander(f"🌟 {song['title']} by {song['artist']}"):
+                    with st.expander(f"🎵 {song['title']} - {song['artist']}"):
                         st.write(f"**Genre:** {song['genre']} | **Difficulty:** {song['difficulty']}")
                         st.write(f"**Vocal Range:** {song['song_range']}")
                         st.write(f"**Compatibility Score:** {song['total_score']:.1%}")
                         st.success("Perfect match for your voice type and range!")
+
             else:
                 st.info("No perfect matches found, but here are some great options!")
             
