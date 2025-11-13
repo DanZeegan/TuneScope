@@ -270,14 +270,14 @@ def main():
     with st.sidebar:
         st.header("⚙️ Settings")
         
-        st.subheader("Preprocessing")
+        st.markdown("### Preprocessing")
         trim_silence_opt = st.checkbox("Trim Silence", value=True)
         
-        st.subheader("Accessibility")
+        st.markdown("### Accessibility")
         font_size = st.radio("Font Size", ["Normal", "Large"], index=0)
         high_contrast = st.checkbox("High Contrast", value=False)
         
-        st.subheader("Privacy & Features")
+        st.markdown("### Privacy & Features")
         use_groq = st.checkbox("Enable GROQ AI (Opt-in)", value=False)
         if use_groq:
             st.info("🔒 GROQ API will be used for generating practice ideas. Your audio stays local.")
@@ -443,7 +443,7 @@ def main():
             st.header("📊 Voice Analysis Results")
             
             # Voice Type
-            st.subheader("🎭 Voice Type")
+            st.markdown("### 🎭 Voice Type")
             col1, col2, col3 = st.columns(3)
             with col1:
                 st.metric("Classification", results['voice_type'] or "Unknown")
@@ -453,7 +453,7 @@ def main():
                 st.metric("Voiced Coverage", f"{stats['voiced_percentage']:.1f}%")
             
             # Range Statistics
-            st.subheader("🎼 Pitch Range")
+            st.markdown("### 🎼 Pitch Range")
             col1, col2, col3, col4 = st.columns(4)
             col1.metric("Min Pitch", f"{stats['min_hz']:.1f} Hz")
             col2.metric("Max Pitch", f"{stats['max_hz']:.1f} Hz")
@@ -461,19 +461,19 @@ def main():
             col4.metric("Intonation Score", f"{stats['intonation_score']:.0f}/100")
             
             # Tessitura
-            st.subheader("🎯 Comfortable Range (Tessitura)")
+            st.markdown("### 🎯 Comfortable Range (Tessitura)")
             col1, col2 = st.columns(2)
             col1.metric("Lower Bound", f"{stats['tessitura_low']:.1f} Hz")
             col2.metric("Upper Bound", f"{stats['tessitura_high']:.1f} Hz")
             
             # Timbre
-            st.subheader("🎨 Timbre Profile")
+            st.markdown("### 🎨 Timbre Profile")
             timbre = results['timbre']
             st.info(f"**{timbre['badge']}**")
             st.write(timbre['tips'])
             
             # Cents error
-            st.subheader("🎯 Intonation Details")
+            st.markdown("### 🎯 Intonation Details")
             col1, col2 = st.columns(2)
             col1.metric("Avg Cents Error", f"{stats['cents_mean']:.1f}¢")
             col2.metric("Std Deviation", f"{stats['cents_std']:.1f}¢")
@@ -517,7 +517,7 @@ def main():
             
             st.success(f"✅ Detected Accent: **{accent['detected_accent']}** ({accent['confidence']:.0f}% confidence)")
             
-            st.subheader("Weak Areas")
+            st.markdown("### Weak Areas")
             for sound in accent['weak_sounds']:
                 with st.expander(f"🔤 {sound}"):
                     st.write(PHONEME_TIPS.get(sound, "Practice this sound"))
@@ -527,19 +527,19 @@ def main():
         st.divider()
         
         # Target accent selection
-        st.subheader("🎯 Target Accent")
+        st.markdown("### 🎯 Target Accent")
         target = st.selectbox("Which accent would you like to learn?", ["American", "British"])
         st.session_state.target_accent = target
         
         if target:
             st.info(f"Target: **{target}** English")
             
-            st.subheader("Key Sounds to Practice")
+            st.markdown("### Key Sounds to Practice")
             for sound in ACCENT_FEATURES[target]['key_sounds']:
                 with st.expander(f"🔤 {sound}"):
                     st.write(PHONEME_TIPS.get(sound, "Practice this sound"))
             
-            st.subheader("Practice Sentences")
+            st.markdown("### Practice Sentences")
             practice_sentences = {
                 'American': [
                     "The car parked in the yard.",
@@ -567,14 +567,14 @@ def main():
             results = st.session_state.analysis_results
             stats = results['stats']
             
-            st.subheader("📊 Your Singing Stats")
+            st.markdown("### 📊 Your Singing Stats")
             col1, col2, col3 = st.columns(3)
             col1.metric("Pitch Accuracy", f"{stats['intonation_score']:.0f}/100")
             col2.metric("Note Stability", f"{100 - min(100, stats['cents_std']):.0f}/100")
             col3.metric("Vocal Coverage", f"{stats['voiced_percentage']:.1f}%")
             
             # Recommendations
-            st.subheader("💡 Training Tips")
+            st.markdown("### 💡 Training Tips")
             
             if stats['intonation_score'] < 70:
                 st.warning("🎯 **Focus on Pitch Accuracy**")
@@ -594,7 +594,7 @@ def main():
             
             # Song identification
             st.divider()
-            st.subheader("🎼 Song Identification")
+            st.markdown("### 🎼 Song Identification")
             
             if st.button("🔍 Identify Song"):
                 catalog = load_or_create_catalog()
@@ -609,7 +609,7 @@ def main():
         else:
             st.info("👆 Analyze your singing first!")
             
-            st.subheader("🎤 Singing Exercises")
+            st.markdown("### 🎤 Singing Exercises")
             st.write("**Warm-up exercises to try:**")
             st.write("1. 🎵 Lip trills (5 minutes)")
             st.write("2. 🎵 Humming scales")
@@ -635,21 +635,21 @@ def main():
                 )
                 
                 if recs:
-                    st.subheader("✅ Perfect Fit for Your Voice")
+                    st.markdown("### ✅ Perfect Fit for Your Voice")
                     for song in recs['fit']:
                         st.success(f"🎵 **{song['title']}** by {song['artist']} (Key: {song['key']})")
                     
-                    st.subheader("💪 Stretch Goals")
+                    st.markdown("### 💪 Stretch Goals")
                     for song in recs['stretch']:
                         st.warning(f"🎵 **{song['title']}** by {song['artist']} (Key: {song['key']})")
                     
-                    st.subheader("❌ Avoid for Now")
+                    st.markdown("### ❌ Avoid for Now")
                     for song in recs['avoid']:
                         st.error(f"🎵 **{song['title']}** by {song['artist']} (Key: {song['key']})")
         else:
             st.info("👆 Analyze your voice first to get personalized recommendations!")
             
-            st.subheader("📚 Song Catalog")
+            st.markdown("### 📚 Song Catalog")
             catalog = load_or_create_catalog()
             st.dataframe(catalog[['title', 'artist', 'key', 'tags']], use_container_width=True)
     
