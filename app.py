@@ -254,7 +254,7 @@ def main():
     col1, col2, col3 = st.columns([2, 1, 1])
     with col1:
         st.title("🎤 Voice Studio Pro")
-        st.caption("Professional Voice Analysis, Accent Training & Singing Coach")
+        st.markdown("**Professional Voice Analysis, Accent Training & Singing Coach**")
     
     with col2:
         if st.button("🌟 Modern", use_container_width=True):
