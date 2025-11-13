@@ -1,0 +1,24 @@
+{
+  "name": "streamlit-voice-studio",
+  "version": "1.0.0",
+  "description": "Professional Voice Analysis & Training Platform",
+  "main": "app.py",
+  "scripts": {
+    "start": "streamlit run app.py",
+    "dev": "streamlit run app.py --server.port=8501",
+    "install-deps": "pip install -r requirements.txt"
+  },
+  "keywords": [
+    "streamlit",
+    "voice-analysis",
+    "singing",
+    "accent-training",
+    "audio-processing"
+  ],
+  "author": "Expert Python Developer",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/streamlit-voice-studio"
+  }
+}
